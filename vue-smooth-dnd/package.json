@@ -1,8 +1,31 @@
 {
   "name": "vue-smooth-dnd",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Vue wrappers for smooth-dnd",
   "main": "dist/vue-smooth-dnd.js",
-  "author": "Kutlu Sahin",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": [
+    "Vue",
+    "Vue.js",
+    "sortable",
+    "drag and drop",
+    "drag&drop",
+    "drag",
+    "drop",
+    "draggable",
+    "dnd",
+    "smooth-dnd"
+  ],
+  "author": {
+    "name": "Kutlu Sahin",
+    "email": "kutlugsahin@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kutlugsahin/vue-smooth-dnd.git"
+  },
+  "dependencies": {
+    "smooth-dnd": "^0.3.4"
+  }
+  
 }
