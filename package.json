@@ -1,16 +1,18 @@
 {
   "name": "vue-smooth-dnd",
   "version": "1.0.0",
-  "description": "Vuew wrappers for smooth-dnd",
+  "description": "Vue wrappers for smooth-dnd",
   "author": "Kutlu Sahin",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build:lib": "webpack -p --config build/webpack.lib.conf.js"
   },
   "dependencies": {
+    "smooth-dnd": "^0.3.3",
     "vue": "^2.5.2"
   },
   "devDependencies": {
