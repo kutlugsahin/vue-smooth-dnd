@@ -9,7 +9,9 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "build:lib": "webpack -p --config build/webpack.lib.conf.js"
+    "build:lib": "webpack -p --config build/webpack.lib.conf.js",
+    "publish": "npm run build:lib && npm publish vue-smooth-dnd",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "smooth-dnd": "^0.3.3",
@@ -41,6 +43,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "gh-pages": "^1.1.0",
     "html-webpack-plugin": "^2.30.1",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",

@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     onDrop: function(dropResult) {
-      console.log('adas', dropResult);
       this.items = applyDrag(this.items, dropResult);
     }
   }
