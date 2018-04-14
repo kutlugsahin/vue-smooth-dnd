@@ -11,7 +11,7 @@ import SmoothDnD, { dropHandlers } from 'smooth-dnd';
 SmoothDnD.dropHandler = dropHandlers.reactDropHandler().handler
 
 const mapOptions = (context) => {
-	const props = Object.assign({}, context.$props);
+	const props = Object.assign({}, context.$props, context.$listeners);
 	const options = {};
 	if(props.behaviour) options.behaviour = props.behaviour;
 	if(props.groupName) options.groupName = props.groupName;
@@ -24,12 +24,13 @@ const mapOptions = (context) => {
 	if(props.lockAxis) options.lockAxis = props.lockAxis;
 	if(props.dragClass) options.dragClass = props.dragClass;
 	if(props.dropClass) options.dropClass = props.dropClass;
-	if(props.drop) options.drop = props.drop;
+	if(props.dragStart) options.onDragStart = props.dragStart;
+	if(props.drop) options.onDrop = props.drop;
 	if(props.getChildPayload) options.getChildPayload = props.getChildPayload;
 	if(props.shouldAnimateDrop) options.shouldAnimateDrop = props.shouldAnimateDrop;
 	if(props.shouldAcceptDrop) options.shouldAcceptDrop = props.shouldAcceptDrop;
-	if(props.dragEnter) options.dragEnter = props.dragEnter;
-	if(props.dragLeave) options.dragLeave = props.dragLeave;
+	if(props.dragEnter) options.onDragEnter = props.dragEnter;
+	if(props.dragLeave) options.onDragLeave = props.dragLeave;
 	return options;
 }
 
@@ -54,23 +55,24 @@ export default {
 		}
 	},
 	props: {
-		behaviour: 'String',
-		groupName: 'String',
-		orientation: 'String',
-		dragHandleSelector: 'String',
-		nonDragAreaSelector: 'String',
-		dragBeginDelay: 'Number',
-		animationDuration: 'Number',
-		autoScrollEnabled: 'Boolean',
-		lockAxis: 'String',
-		dragClass: 'String',
-		dropClass: 'String',
-		drop: 'Function',
-		getChildPayload: 'Function',
-		shouldAnimateDrop: 'Function',
-		shouldAcceptDrop: 'Function',
-		dragEnter: 'Function',
-		dragLeave: 'Function',
+		behaviour: String,
+		groupName: String,
+		orientation: String,
+		dragHandleSelector: String,
+		nonDragAreaSelector: String,
+		dragBeginDelay: Number,
+		animationDuration: Number,
+		autoScrollEnabled: { type: Boolean, default: true },
+		lockAxis: String,
+		dragClass: String,
+		dropClass: String,
+		dragStart: Function,
+		drop: Function,
+		getChildPayload: Function,
+		shouldAnimateDrop: Function,
+		shouldAcceptDrop: Function,
+		dragEnter: Function,
+		dragLeave: Function,
 	}
 }
 </script>
