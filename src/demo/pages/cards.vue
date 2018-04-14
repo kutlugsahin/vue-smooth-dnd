@@ -3,7 +3,8 @@
 			<Container 
 				orientation="horizontal" 
 				@drop="onColumnDrop($event)"
-				dragHandleSelector=".column-drag-handle"
+				drag-handle-selector=".column-drag-handle"
+				@drag-start="dragStart"
 			>
 				<Draggable v-for="column in scene.children" :key="column.id">
 					<div :class="column.props.className">
@@ -12,11 +13,11 @@
 							{{column.name}}
 						</div>
 						<Container 
-							groupName="col"
-							@drop="onCardDrop(column.id, $event)"
-							@getChildPayload="getCardPayload(column.id)"
-							dragClass="card-ghost"
-							dropClass="card-ghost-drop"
+							group-name="col"
+							@drop="(e) => onCardDrop(column.id, e)"
+							:get-child-payload="getCardPayload(column.id)"
+							drag-class="card-ghost"
+							drop-class="card-ghost-drop"
 						>
 							<Draggable v-for="card in column.children" :key="card.id">
 								<div :class="card.props.className" :style="card.props.style">
@@ -119,7 +120,10 @@ export default {
           index
         ];
       };
-    }
+		},
+		dragStart: function(){
+			console.log('drag started');
+		}
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="simple-page">
-        <Container @drop="onDrop" :dragBeginDelay="500" dragClass="form-ghost" dropClass="form-ghost-drop">            
+        <Container @drop="onDrop" :drag-begin-delay="500" drag-class="form-ghost" drop-class="form-ghost-drop">            
           <Draggable v-for="item in items" :key="item.id">
             <div class="draggable-item">
               {{item.data}}

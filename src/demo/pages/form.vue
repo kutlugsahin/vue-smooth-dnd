@@ -3,9 +3,9 @@
 			<div class="form">
 				<Container 
 					@drop="onDrop($event)" 
-					nonDragAreaSelector=".field"
-					dragClass="form-ghost" 
-					dropClass="form-ghost-drop"
+					non-drag-area-selector=".field"
+					drag-class="form-ghost" 
+					drop-class="form-ghost-drop"
 				>            
 					<Draggable v-for="field in form" :key="field.type">
 					<div

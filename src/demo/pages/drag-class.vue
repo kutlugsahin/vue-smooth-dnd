@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="simple-page">
-        <Container @drop="onDrop" dragClass="opacity-ghost" dropClass="opacity-ghost-drop">            
+        <Container @drop="onDrop" drag-class="opacity-ghost" drop-class="opacity-ghost-drop">            
           <Draggable v-for="item in items" :key="item.id">
             <div class="draggable-item">
               {{item.data}}

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="simple-page">
-        <Container @drop="onDrop" dragHandleSelector=".column-drag-handle">            
+        <Container @drop="onDrop" drag-handle-selector=".column-drag-handle">            
           <Draggable v-for="item in items" :key="item.id">
             <div class="draggable-item">
 							<span class="column-drag-handle" style="float:left; padding:0 10px;">&#x2630;</span>

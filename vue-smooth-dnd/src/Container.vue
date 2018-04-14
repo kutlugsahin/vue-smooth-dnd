@@ -24,13 +24,30 @@ const mapOptions = (context) => {
 	if(props.lockAxis) options.lockAxis = props.lockAxis;
 	if(props.dragClass) options.dragClass = props.dragClass;
 	if(props.dropClass) options.dropClass = props.dropClass;
-	if(props.dragStart) options.onDragStart = props.dragStart;
-	if(props.drop) options.onDrop = props.drop;
+	if(props['drag-start']) {
+		options.onDragStart = (index, payload) => { 
+			context.$emit('drag-start', {index, payload}); 
+		};
+	}
+	if(props['drop']) { 
+		options.onDrop = (dragResult) => {
+			console.log(dragResult);
+			context.$emit('drop', dragResult); 
+		};
+	}
 	if(props.getChildPayload) options.getChildPayload = props.getChildPayload;
 	if(props.shouldAnimateDrop) options.shouldAnimateDrop = props.shouldAnimateDrop;
 	if(props.shouldAcceptDrop) options.shouldAcceptDrop = props.shouldAcceptDrop;
-	if(props.dragEnter) options.onDragEnter = props.dragEnter;
-	if(props.dragLeave) options.onDragLeave = props.dragLeave;
+	if(props['drag-enter']) {
+		options.onDragEnter = () => {
+			context.$emit('drag-enter');
+		}
+	}
+	if(props['drag-leave']) {
+		options.onDragLeave = () => {
+			context.$emit('drag-leave');			
+		}
+	}
 	return options;
 }
 
@@ -66,13 +83,14 @@ export default {
 		lockAxis: String,
 		dragClass: String,
 		dropClass: String,
-		dragStart: Function,
-		drop: Function,
+		'drag-start': Function,
+		'drop': Function,
 		getChildPayload: Function,
 		shouldAnimateDrop: Function,
 		shouldAcceptDrop: Function,
-		dragEnter: Function,
-		dragLeave: Function,
+		'drag-enter': Function,
+		'drag-leave': Function,
 	}
 }
 </script>
+

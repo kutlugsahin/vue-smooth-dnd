@@ -1,7 +1,7 @@
 <template>
   <div :style="{ 'display': 'flex', 'justifyContent': 'stretch', 'marginTop': '50px', 'marginRight': '50px' }">
 			<div :style="{'marginLeft': '50px', 'flex': '1'}">
-				<Container :groupName="'1'" @getChildPayload="getChildPayload1" @drop="onDrop('items1', $event)">            
+				<Container :group-name="'1'" :get-child-payload="getChildPayload1" @drop="onDrop('items1', $event)">            
 					<Draggable v-for="item in items1" :key="item.id">
 						<div class="draggable-item">
 							{{item.data}}
@@ -10,7 +10,7 @@
 				</Container>
 			</div>
 			<div :style="{'marginLeft': '50px', 'flex': '1'}">
-				<Container :groupName="'1'" @getChildPayload="getChildPayload2" @drop="onDrop('items2', $event)">            
+				<Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop('items2', $event)">            
 					<Draggable v-for="item in items2" :key="item.id">
 						<div class="draggable-item">
 							{{item.data}}
@@ -19,7 +19,7 @@
 				</Container>
 			</div>
 			<div :style="{'marginLeft': '50px', 'flex': '1'}">
-				<Container :groupName="'1'" @getChildPayload="getChildPayload3" @drop="onDrop('items3', $event)">            
+				<Container :group-name="'1'" :get-child-payload="getChildPayload3" @drop="onDrop('items3', $event)">            
 					<Draggable v-for="item in items3" :key="item.id">
 						<div class="draggable-item">
 							{{item.data}}
@@ -28,7 +28,7 @@
 				</Container>
 			</div>		
 			<div :style="{'marginLeft': '50px', 'flex': '1'}">
-				<Container :groupName="'1'" @getChildPayload="getChildPayload4" @drop="onDrop('items4', $event)">            
+				<Container :group-name="'1'" :get-child-payload="getChildPayload4" @drop="onDrop('items4', $event)">            
 					<Draggable v-for="item in items4" :key="item.id">
 						<div class="draggable-item">
 							{{item.data}}

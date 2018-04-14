@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="simple-page">
-        <Container @drop="onDrop" :animationDuration="500">            
+        <Container @drop="onDrop" :animation-duration="500">            
           <Draggable v-for="item in items" :key="item.id">
             <div class="draggable-item">
               {{item.data}}
