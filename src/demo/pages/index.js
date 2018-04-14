@@ -18,7 +18,7 @@ export {
 }
 
 const getUrl = (pagename) => {
-	return `https://github.com/kutlugsahin/ngx-smooth-dnd/tree/master/apps/demo/src/pages/${pagename}`;
+	return `https://github.com/kutlugsahin/vue-smooth-dnd/blob/master/src/demo/pages/${pagename}`;
 };
 
 
@@ -27,10 +27,10 @@ export default [
 		title: 'Showcase',
 		pages: [
 			{
-				title: 'Card board', page: 'cards', url: getUrl('cards.ts')
+				title: 'Card board', page: 'cards', url: getUrl('cards.vue')
 			},
 			{
-				title: 'Form elements', page: 'form', url: getUrl('form.ts')
+				title: 'Form elements', page: 'form', url: getUrl('form.vue')
 			}
 		]
 	},
@@ -38,12 +38,12 @@ export default [
 		title: 'Basic Sortables',
 		pages: [
 			{
-				title: 'Sortable with default options', page: 'simple', url: getUrl('simple.ts')
+				title: 'Sortable with default options', page: 'simple', url: getUrl('simple.vue')
 			},
 			{
-				title: 'Sortable inside scroller', page: 'simple-scroller', url: getUrl('simple-scroller.ts')
+				title: 'Sortable inside scroller', page: 'simple-scroller', url: getUrl('simple-scroller.vue')
 			}, {
-				title: 'Horizontal sortable', page: 'simple-horizontal', url: getUrl('simple-horizontal.ts')
+				title: 'Horizontal sortable', page: 'simple-horizontal', url: getUrl('simple-horizontal.vue')
 			}
 		]
 	},
@@ -51,10 +51,10 @@ export default [
 		title: 'Groups',
 		pages: [
 			{
-				title: 'DnD between groups', page: 'groups', url: getUrl('groups.ts')
+				title: 'DnD between groups', page: 'groups', url: getUrl('groups.vue')
 			},
 			{
-				title: 'Copy draggable', page: 'copy', url: getUrl('copy.ts')
+				title: 'Copy draggable', page: 'copy', url: getUrl('copy.vue')
 			}
 		]
 	},
@@ -62,7 +62,7 @@ export default [
 		title: 'Nested Groups',
 		pages: [
 			{
-				title: 'Nested vertical sortable', page: 'nested', url: getUrl('nested.ts')
+				title: 'Nested vertical sortable', page: 'nested', url: getUrl('nested.vue')
 			}
 		]
 	},
@@ -70,19 +70,19 @@ export default [
 		title: 'Advanced options',
 		pages: [
 			{
-				title: 'Lock axis', page: 'lock-axis', url: getUrl('lock-axis.ts')
+				title: 'Lock axis', page: 'lock-axis', url: getUrl('lock-axis.vue')
 			},
 			{
-				title: 'Drag begin delay of 500ms', page: 'drag-delay', url: getUrl('drag-delay.ts')
+				title: 'Drag begin delay of 500ms', page: 'drag-delay', url: getUrl('drag-delay.vue')
 			},
 			{
-				title: 'Drag handle', page: 'drag-handle', url: getUrl('drag-handle.ts')
+				title: 'Drag handle', page: 'drag-handle', url: getUrl('drag-handle.vue')
 			},
 			{
-				title: 'Drag and Drop classses', page: 'drag-class', url: getUrl('drag-class.ts')
+				title: 'Drag and Drop classses', page: 'drag-class', url: getUrl('drag-class.vue')
 			},
 			{
-				title: 'Animation duration 500ms', page: 'transition-duration', url: getUrl('transition-duration.ts')
+				title: 'Animation duration 500ms', page: 'transition-duration', url: getUrl('transition-duration.vue')
 			}
 		]
 	}

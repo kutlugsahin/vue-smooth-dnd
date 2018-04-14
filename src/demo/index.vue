@@ -71,7 +71,10 @@ export default {
     },
     selectPage: function(page) {
       this.selectedPage = page;
-    }
+		},
+		openCode() {
+    	window.open(this.selectedPage.url, '_blank');
+  	}
   },
   computed: {
     navButtonClass: function() {
