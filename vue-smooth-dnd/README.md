@@ -1,6 +1,6 @@
-# ngx-smooth-dnd
+# vue-smooth-dnd
 
-A fast and lightweight drag&drop, sortable library for Vue.js with many configuration options covering many d&d scenarios. It uses css transitions for animations so it's hardware accelerated whenever possible.
+A fast and lightweight drag&drop, sortable library for Vue.js with many configuration options covering many d&d scenarios.
 
 This library consists wrapper Vue.js components over <a href="https://github.com/kutlugsahin/smooth-dnd/">smooth-dnd</a> library.
 
@@ -10,7 +10,7 @@ This library consists wrapper Vue.js components over <a href="https://github.com
 ### Installation
 
 ```shell
-npm i ngx-smooth-dnd
+npm i vue-smooth-dnd
 ```
 
 ## Usage
@@ -92,7 +92,7 @@ Event to be emitted only by the container which drag starts from.
 ```ts
 @drag-start="onDragStart($event)"
 
-onDragStart: function({index: number, payload: any}) {
+onDragStart: function({index, payload}) {
   ...
 }
 ```
@@ -127,7 +127,7 @@ The function to be called to get the payload object to be passed **onDrop** func
 ```ts
 :get-child-payload="getChildPayload"
 
-getChildPayload: function(index: number) {
+getChildPayload: function(index) {
   return {
     ...
   }
@@ -145,7 +145,7 @@ Sometimes dragged item's dimensions are not suitable with the target container a
 ```ts
 :should-animate-drop="shouldAnimateDrop"
 
-shouldAnimateDrop: function(sourceContainerOptions, payload: any) {
+shouldAnimateDrop: function(sourceContainerOptions, payload) {
   return false;
 }
 ```
