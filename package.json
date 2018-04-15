@@ -4,6 +4,23 @@
   "description": "Vue wrappers for smooth-dnd",
   "author": "Kutlu Sahin",
   "private": true,
+  "homepage": "https://kutlugsahin.github.io/vue-smooth-dnd/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kutlugsahin/vue-smooth-dnd"
+  },
+  "keywords": [
+    "Vue",
+    "Vue.js",
+    "sortable",
+    "drag and drop",
+    "drag&drop",
+    "drag",
+    "drop",
+    "draggable",
+    "dnd",
+    "smooth-dnd"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
