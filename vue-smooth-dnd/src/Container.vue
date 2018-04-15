@@ -9,6 +9,7 @@
 import SmoothDnD, { dropHandlers } from 'smooth-dnd';
 
 SmoothDnD.dropHandler = dropHandlers.reactDropHandler().handler
+SmoothDnD.wrapChild = p => p; // dont wrap children they will already be wrapped
 
 const mapOptions = (context) => {
 	const props = Object.assign({}, context.$props, context.$listeners);
