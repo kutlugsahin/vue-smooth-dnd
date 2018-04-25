@@ -32,7 +32,6 @@ const mapOptions = (context) => {
 	}
 	if(props['drop']) { 
 		options.onDrop = (dragResult) => {
-			console.log(dragResult);
 			context.$emit('drop', dragResult); 
 		};
 	}
