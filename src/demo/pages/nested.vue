@@ -12,10 +12,24 @@
                 <div :style="{ 'cursor': 'default' }">
                   <Container @drop="onInnerDrop(item, $event)">
                     <Draggable v-for="q in item.items" :key="q.id">
-                          <div class="draggable-item">
-                            {{q.data}}
+                      <div v-if="q.type == 'draggable'" class="draggable-item">
+                        {{q.data}}
+                      </div>
+                      <div v-if="q.type == 'container'">
+                        <div :style="innerContainerStyle">
+                          <h4>Sortable List</h4>
+                          <div :style="{ 'cursor': 'default' }">
+                            <Container @drop="onInnerDrop2(item, q, $event)">
+                              <Draggable v-for="t in q.items" :key="t.id">
+                                <div class="draggable-item">
+                                  {{t.data}}
+                                </div>
+                              </Draggable>
+                            </Container>
                           </div>
-                      </Draggable>
+                        </div>
+                      </div>
+                    </Draggable>
                   </Container>
                 </div>
               </div>
@@ -46,7 +60,7 @@ export default {
         type: "draggable",
         data: `Container 1 Draggable - ${i}`
       })),
-      items2: generateItems(5, i => ({
+      items2: generateItems(10, i => ({
         id: i,
         type: "draggable",
         data: `Container 2 Draggable - ${i}`
@@ -72,6 +86,16 @@ export default {
       items: res.items2
     };
 
+    res.items[5].items[3] = {
+      id: 3,
+      type: "container",
+      items: generateItems(4, i => ({
+        id: i,
+        type: "draggable",
+        data: `Container 4 Draggable - ${i}`
+      }))
+    };
+
     res.items[9] = {
       id: 9,
       type: "container",
@@ -88,6 +112,16 @@ export default {
       const newItems = [...this.items];
       const index = newItems.indexOf(item);
       newItems[index].items = applyDrag(newItems[index].items, dropResult);
+      this.items = newItems;
+    },
+    onInnerDrop2: function(item, item2, dropResult) {
+      const newItems = [...this.items];
+      const index = newItems.indexOf(item);
+      const index2 = item.items.indexOf(item2);
+      newItems[index].items[index2].items = applyDrag(
+        newItems[index].items[index2].items,
+        dropResult
+      );
       this.items = newItems;
     }
   }

@@ -79,8 +79,8 @@ export default {
   components: { Container, Draggable },
   data: function() {
     return {
-			form: [...formInitial]
-		}
+      form: [...formInitial]
+    };
   },
   methods: {
     onDrop: function(dropResult) {

@@ -31,7 +31,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
-    "smooth-dnd": "^0.3.7",
+    "smooth-dnd": "^0.4.2",
     "vue": "^2.5.2"
   },
   "devDependencies": {

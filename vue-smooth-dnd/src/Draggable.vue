@@ -1,19 +1,21 @@
-<template>
-	<div :class="draggableClasses">
-		<slot></slot>
-	</div>
-</template>
+
 
 <script>
-import {constants} from 'smooth-dnd';
+import { constants } from "smooth-dnd";
+
+const wrapChild = (createElement, ctx) => {
+  return createElement(
+    "div",
+    { class: constants.wrapperClass },
+    ctx.$slots.default
+  );
+};
 
 export default {
-	name: 'Draggable',
-	data(){
-		return {
-			draggableClasses: `${constants.wrapperClass}`
-		}
-	}
-}
+  name: "Draggable",
+  render: function(createElement) {
+    return wrapChild(createElement, this);
+  }
+};
 </script>
 
