@@ -30,7 +30,7 @@ const mapOptions = context => {
   }
   if (props["drag-end"]) {
     options.onDragEnd = (params) => {
-      context.$emit("drag-start", params);
+      context.$emit("drag-end", params);
     };
   }
   if (props["drop"]) {

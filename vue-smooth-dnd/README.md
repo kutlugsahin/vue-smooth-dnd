@@ -115,7 +115,7 @@ function onDragEnd({isSource, payload, willAcceptDrop}) {
 ```
 #### Parameters
 - **isSource** : `boolean` : true if it is called by the container which drag starts from, otherwise false.
-- **payload** : `object` : the payload object that is returned by getChildPayload function. It will be undefined in case getChildPayload is not set.
+- **payload** : `object` : the payload object that is returned by get-child-payload function. It will be undefined in case get-child-payload is not set.
 - **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
 
 ### drop
