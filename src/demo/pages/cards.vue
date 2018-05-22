@@ -15,6 +15,8 @@
 						<Container 
 							group-name="col"
 							@drop="(e) => onCardDrop(column.id, e)"
+              @drag-start="(e) => log('drag start', e)"
+              @drag-end="(e) => log('drag end', e)"
 							:get-child-payload="getCardPayload(column.id)"
 							drag-class="card-ghost"
 							drop-class="card-ghost-drop"
@@ -123,7 +125,10 @@ export default {
 		},
 		dragStart: function(){
 			console.log('drag started');
-		}
+    },
+    log: function(...params){
+      console.log(...params);
+    }
   }
 };
 </script>

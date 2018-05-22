@@ -1,5 +1,3 @@
-
-
 <script>
 import { constants } from "smooth-dnd";
 

@@ -24,8 +24,13 @@ const mapOptions = context => {
   if (props.dragClass) options.dragClass = props.dragClass;
   if (props.dropClass) options.dropClass = props.dropClass;
   if (props["drag-start"]) {
-    options.onDragStart = (index, payload) => {
-      context.$emit("drag-start", { index, payload });
+    options.onDragStart = (params) => {
+      context.$emit("drag-start", params);
+    };
+  }
+  if (props["drag-end"]) {
+    options.onDragEnd = (params) => {
+      context.$emit("drag-start", params);
     };
   }
   if (props["drop"]) {
@@ -86,6 +91,7 @@ export default {
     dragClass: String,
     dropClass: String,
     "drag-start": Function,
+    "drag-end": Function,
     drop: Function,
     getChildPayload: Function,
     shouldAnimateDrop: Function,
