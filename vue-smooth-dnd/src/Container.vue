@@ -1,5 +1,6 @@
 <script>
 import SmoothDnD, { dropHandlers } from "smooth-dnd";
+const containerRef = 'smooth-dnd-container-ref';
 
 SmoothDnD.dropHandler = dropHandlers.reactDropHandler().handler;
 SmoothDnD.wrapChild = p => p; // dont wrap children they will already be wrapped
@@ -97,9 +98,13 @@ export default {
     shouldAnimateDrop: Function,
     shouldAcceptDrop: Function,
     "drag-enter": Function,
-    "drag-leave": Function
+    "drag-leave": Function,
+    wrap: {type: Boolean, default: true}
   },
   render: function(createElement) {
+    if(!this.$props.wrap){
+      return this.$slots.default[0];
+    }
     return createElement('div', {ref: 'container'}, this.$slots.default);
   }
 };
