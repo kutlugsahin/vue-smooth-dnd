@@ -197,3 +197,7 @@ onDragLeave: function() {
 ### **Draggable**
 
 Wrapper component for Container's children. Every child element should be wrapped with **Draggable** component.
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/kutlugsahin/vue-smooth-dnd/badge.svg?style=beer-square)](https://beerpay.io/kutlugsahin/vue-smooth-dnd)  [![Beerpay](https://beerpay.io/kutlugsahin/vue-smooth-dnd/make-wish.svg?style=flat-square)](https://beerpay.io/kutlugsahin/vue-smooth-dnd?focus=wish)
