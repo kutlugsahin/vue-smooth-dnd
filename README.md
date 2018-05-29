@@ -76,6 +76,7 @@ Component that contains the draggable elements or components. Each of its childr
 |:drag-class|string|`undefined`|Class to be added to the ghost item being dragged. The class will be added after it's added to the DOM so any transition in the class will be applied as intended.
 |:drop-class|string|`undefined`|Class to be added to the ghost item just before the drop animation begins.|
 |@drag-start|function|`undefined`|*See descriptions below*|
+|@drag-end|function|`undefined`|*See descriptions below*|
 |@drop|function|`undefined`|*See descriptions below*|
 |:get-child-payload|function|`undefined`|*See descriptions below*|
 |:should-animate-drop|function|`undefined`|*See descriptions below*|
@@ -87,20 +88,35 @@ Component that contains the draggable elements or components. Each of its childr
 
 ### drag-start
 
-Event to be emitted only by the container which drag starts from.
+Event to be emitted only by by all containers when drag start.
 
 ```ts
 @drag-start="onDragStart($event)"
 
-onDragStart: function({index, payload}) {
+onDragStart: function({isSource, payload, willAcceptDrop}) {
   ...
 }
 ```
 
 #### Parameters
-- **event** : `object`
-  - **index** : `number` : index of the child item
-  - **payload** : `object` : the payload object that is returned by get-child-payload function. It will be undefined in case get-child-payload is not set.
+- **isSource** : `boolean` : true if it is called by the container which drag starts from otherwise false.
+- **payload** : `object` : the payload object that is returned by get-child-payload function. It will be undefined in case get-child-payload is not set.
+- **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
+
+### drag-end
+
+The function to be called by all container when drag ends. Called before **drop** event.
+```ts
+@drag-end="onDragEnd($event)"
+
+function onDragEnd({isSource, payload, willAcceptDrop}) {
+  ...
+}
+```
+#### Parameters
+- **isSource** : `boolean` : true if it is called by the container which drag starts from, otherwise false.
+- **payload** : `object` : the payload object that is returned by get-child-payload function. It will be undefined in case get-child-payload is not set.
+- **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
 
 ### drop
 
@@ -197,7 +213,3 @@ onDragLeave: function() {
 ### **Draggable**
 
 Wrapper component for Container's children. Every child element should be wrapped with **Draggable** component.
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/kutlugsahin/vue-smooth-dnd/badge.svg?style=beer-square)](https://beerpay.io/kutlugsahin/vue-smooth-dnd)  [![Beerpay](https://beerpay.io/kutlugsahin/vue-smooth-dnd/make-wish.svg?style=flat-square)](https://beerpay.io/kutlugsahin/vue-smooth-dnd?focus=wish)
