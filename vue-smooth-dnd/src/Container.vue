@@ -1,5 +1,5 @@
 <script>
-import SmoothDnD, { dropHandlers } from "smooth-dnd";
+import SmoothDnD, { dropHandlers } from 'smooth-dnd';
 const containerRef = 'smooth-dnd-container-ref';
 
 SmoothDnD.dropHandler = dropHandlers.reactDropHandler().handler;
@@ -24,40 +24,40 @@ const mapOptions = context => {
   if (props.lockAxis) options.lockAxis = props.lockAxis;
   if (props.dragClass) options.dragClass = props.dragClass;
   if (props.dropClass) options.dropClass = props.dropClass;
-  if (props["drag-start"]) {
-    options.onDragStart = (params) => {
-      context.$emit("drag-start", params);
+  if (props['drag-start']) {
+    options.onDragStart = params => {
+      context.$emit('drag-start', params);
     };
   }
-  if (props["drag-end"]) {
-    options.onDragEnd = (params) => {
-      context.$emit("drag-end", params);
+  if (props['drag-end']) {
+    options.onDragEnd = params => {
+      context.$emit('drag-end', params);
     };
   }
-  if (props["drop"]) {
+  if (props['drop']) {
     options.onDrop = dragResult => {
-      context.$emit("drop", dragResult);
+      context.$emit('drop', dragResult);
     };
   }
   if (props.getChildPayload) options.getChildPayload = props.getChildPayload;
   if (props.shouldAnimateDrop)
     options.shouldAnimateDrop = props.shouldAnimateDrop;
   if (props.shouldAcceptDrop) options.shouldAcceptDrop = props.shouldAcceptDrop;
-  if (props["drag-enter"]) {
+  if (props['drag-enter']) {
     options.onDragEnter = () => {
-      context.$emit("drag-enter");
+      context.$emit('drag-enter');
     };
   }
-  if (props["drag-leave"]) {
+  if (props['drag-leave']) {
     options.onDragLeave = () => {
-      context.$emit("drag-leave");
+      context.$emit('drag-leave');
     };
   }
   return options;
 };
 
 export default {
-  name: "Container",
+  name: 'Container',
   mounted() {
     this.containerElement = this.$refs.container || this.$el;
     this.container = SmoothDnD(this.containerElement, mapOptions(this));
@@ -91,22 +91,23 @@ export default {
     lockAxis: String,
     dragClass: String,
     dropClass: String,
-    "drag-start": Function,
-    "drag-end": Function,
+    'drag-start': Function,
+    'drag-end': Function,
     drop: Function,
     getChildPayload: Function,
     shouldAnimateDrop: Function,
     shouldAcceptDrop: Function,
-    "drag-enter": Function,
-    "drag-leave": Function,
-    wrap: {type: Boolean, default: true}
+    'drag-enter': Function,
+    'drag-leave': Function,
+    wrap: { type: Boolean, default: true },
+    tag: { type: String, default: 'div' },
   },
   render: function(createElement) {
-    if(!this.$props.wrap){
+    if (!this.$props.wrap) {
       return this.$slots.default[0];
     }
-    return createElement('div', {ref: 'container'}, this.$slots.default);
-  }
+    return createElement(this.$props.tag || 'div', { ref: 'container' }, this.$slots.default);
+  },
 };
 </script>
 
