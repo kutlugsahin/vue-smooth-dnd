@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "object-assign": "^4.1.1",
-    "smooth-dnd": "^0.4.6",
+    "smooth-dnd": "^0.5.0",
     "vue": "^2.5.2"
   },
   "devDependencies": {
