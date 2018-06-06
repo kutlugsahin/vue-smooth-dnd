@@ -212,7 +212,7 @@ onDragLeave: function() {
 ```
 ### tag
 
-Tag name or the node definition to render the root element of the container.
+Tag name or the node definition to render the root element of the Container.
 Default value is 'div'.
 
 ```ts
@@ -240,7 +240,7 @@ Wrapper component for Container's children. Every child element should be wrappe
 
 ### tag
 
-Tag name or the node definition to render the root element of the container.
+Tag name or the node definition to render the root element of the Draggable.
 Default value is 'div'.
 
 ```ts
