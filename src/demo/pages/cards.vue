@@ -20,9 +20,8 @@
 							:get-child-payload="getCardPayload(column.id)"
 							drag-class="card-ghost"
 							drop-class="card-ghost-drop"
-              :tag="{value: 'table', props: {class: 'sdfsdf'}}"
 						>
-							<Draggable v-for="card in column.children" :key="card.id" tag="tr">
+							<Draggable v-for="card in column.children" :key="card.id">
 								<div :class="card.props.className" :style="card.props.style">
 									<p>
 										{{card.data}}
