@@ -5,6 +5,24 @@ const containerRef = 'smooth-dnd-container-ref';
 SmoothDnD.dropHandler = dropHandlers.reactDropHandler().handler;
 SmoothDnD.wrapChild = p => p; // dont wrap children they will already be wrapped
 
+const getTagProps = tag => {
+  if (tag) {
+    if (typeof tag === 'string') {
+      return {
+        value: tag,
+      };
+    } else if (typeof tag === 'object') {
+      return {
+        value: tag.value || 'div',
+        props: tag.props,
+      };
+    }
+  }
+  return {
+    value: 'div',
+  };
+};
+
 const mapOptions = context => {
   const props = Object.assign({}, context.$props, context.$listeners);
   const options = {};
@@ -99,14 +117,27 @@ export default {
     shouldAcceptDrop: Function,
     'drag-enter': Function,
     'drag-leave': Function,
-    wrap: { type: Boolean, default: true },
-    tag: { type: String, default: 'div' },
+    tag: {
+      validator: function(tag) {
+        if (tag) {
+          if (typeof tag === 'string') return true;
+          if (typeof tag === 'object') {
+            if (typeof tag.value === 'string') return true;
+          }
+          return false;
+        }
+        return true;
+      },
+      default: 'div',
+    },
   },
   render: function(createElement) {
-    if (!this.$props.wrap) {
-      return this.$slots.default[0];
-    }
-    return createElement(this.$props.tag || 'div', { ref: 'container' }, this.$slots.default);
+    const tagProps = getTagProps(this.$props.tag);
+    return createElement(
+      tagProps.value,
+      Object.assign({}, { ref: 'container' }, tagProps.props),
+      this.$slots.default,
+    );
   },
 };
 </script>
