@@ -37,6 +37,9 @@ module.exports = {
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
+				options: {
+					presets: ['env']
+				},
 				include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
 			}
 		]

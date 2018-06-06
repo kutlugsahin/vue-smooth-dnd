@@ -2,8 +2,8 @@ const isArray = function(obj) {
   return Object.prototype.toString.call(obj) === "[object Array]";
 };
 
-export const getTagProps = (ctx, tagClasses) => {
-  const { tag } = ctx.$props;
+export function getTagProps(ctx, tagClasses) {
+  const tag  = ctx.$props.tag;
   if (tag) {
     if (typeof tag === "string") {
       const result = { value: tag };
@@ -23,16 +23,16 @@ export const getTagProps = (ctx, tagClasses) => {
           }
         } else {
           result.props.class = tagClasses;
-        }  
+        }
       }
 
       return result;
     }
   }
   return { value: "div" };
-};
+}
 
-export const validateTagProp = tag => {
+export function validateTagProp(tag) {
   if (tag) {
     if (typeof tag === "string") return true;
     if (typeof tag === "object") {
@@ -46,4 +46,4 @@ export const validateTagProp = tag => {
     return false;
   }
   return true;
-};
+}
