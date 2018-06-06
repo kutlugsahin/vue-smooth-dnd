@@ -45,6 +45,7 @@
 			<TransitionDuration v-if="selectedPage.page == 'transition-duration'"></TransitionDuration>
 			<Cards v-if="selectedPage.page == 'cards'"></Cards>
 			<Form v-if="selectedPage.page == 'form'"></Form>
+			<Table v-if="selectedPage.page == 'table'"></Table>
 		</div>
 	</div>
 </div>
@@ -52,11 +53,11 @@
 
 <script>
 import Pages from "./pages";
-import { Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, LockAxis, DragDelay, DragHandle, DragClass, TransitionDuration, Cards, Form } from './pages';
+import { Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, LockAxis, DragDelay, DragHandle, DragClass, TransitionDuration, Cards, Form, Table } from './pages';
 export default {
 	name: "Demo",
 	components: {
-		Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, LockAxis, DragDelay, DragHandle, DragClass, TransitionDuration, Cards, Form
+		Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, LockAxis, DragDelay, DragHandle, DragClass, TransitionDuration, Cards, Form, Table
 	},
   data: function() {
     return {
