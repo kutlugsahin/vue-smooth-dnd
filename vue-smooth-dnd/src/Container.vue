@@ -1,27 +1,11 @@
 <script>
 import SmoothDnD, { dropHandlers } from 'smooth-dnd';
-const containerRef = 'smooth-dnd-container-ref';
+import { getTagProps, validateTagProp } from "./utils";
 
 SmoothDnD.dropHandler = dropHandlers.reactDropHandler().handler;
 SmoothDnD.wrapChild = p => p; // dont wrap children they will already be wrapped
 
-const getTagProps = tag => {
-  if (tag) {
-    if (typeof tag === 'string') {
-      return {
-        value: tag,
-      };
-    } else if (typeof tag === 'object') {
-      return {
-        value: tag.value || 'div',
-        props: tag.props,
-      };
-    }
-  }
-  return {
-    value: 'div',
-  };
-};
+
 
 const mapOptions = context => {
   const props = Object.assign({}, context.$props, context.$listeners);
@@ -118,21 +102,12 @@ export default {
     'drag-enter': Function,
     'drag-leave': Function,
     tag: {
-      validator: function(tag) {
-        if (tag) {
-          if (typeof tag === 'string') return true;
-          if (typeof tag === 'object') {
-            if (typeof tag.value === 'string') return true;
-          }
-          return false;
-        }
-        return true;
-      },
+      validator: validateTagProp,
       default: 'div',
     },
   },
   render: function(createElement) {
-    const tagProps = getTagProps(this.$props.tag);
+    const tagProps = getTagProps(this);
     return createElement(
       tagProps.value,
       Object.assign({}, { ref: 'container' }, tagProps.props),
