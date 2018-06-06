@@ -220,7 +220,7 @@ Default value is 'div'.
 
 or
 
-:tag="table"
+tag="table"
 ```
 
 #### possible values
@@ -248,7 +248,7 @@ Default value is 'div'.
 
 or
 
-:tag="tr"
+tag="tr"
 ```
 
 #### possible values
