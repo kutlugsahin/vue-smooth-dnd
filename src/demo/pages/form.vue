@@ -6,6 +6,7 @@
 					non-drag-area-selector=".field"
 					drag-class="form-ghost" 
 					drop-class="form-ghost-drop"
+					:class="{isActive: true}"
 				>            
 					<Draggable v-for="field in form" :key="field.type">
 					<div
