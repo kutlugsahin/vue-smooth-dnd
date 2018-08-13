@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-dnd",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Vue wrappers for smooth-dnd",
   "main": "dist/vue-smooth-dnd.js",
   "license": "ISC",
@@ -25,7 +25,7 @@
     "url": "https://github.com/kutlugsahin/vue-smooth-dnd.git"
   },
   "dependencies": {
-    "smooth-dnd": "0.5.8"
+    "smooth-dnd": "0.5.9"
   }
   
 }
