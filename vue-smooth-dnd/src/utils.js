@@ -3,7 +3,7 @@ const isArray = function(obj) {
 };
 
 export function getTagProps(ctx, tagClasses) {
-  const tag  = ctx.$props.tag;
+  const tag  = (ctx.$props || ctx.props).tag;
   if (tag) {
     if (typeof tag === "string") {
       const result = { value: tag };
