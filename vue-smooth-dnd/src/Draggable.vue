@@ -7,20 +7,21 @@ const wrapChild = (createElement, ctx) => {
   return createElement(
     tagProps.value,
     Object.assign({}, tagProps.props),
-    ctx.$slots.default
+    ctx.slots().default
   );
 };
 
 export default {
   name: "Draggable",
+  functional: true,
   props: {
     tag: {
       validator: validateTagProp,
       default: "div"
     }
   },
-  render: function(createElement) {
-    return wrapChild(createElement, this);
+  render: function(createElement, ctx) {
+    return wrapChild(createElement, ctx);
   }
 };
 </script>
