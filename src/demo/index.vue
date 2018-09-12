@@ -46,6 +46,7 @@
 			<Cards v-if="selectedPage.page == 'cards'"></Cards>
 			<Form v-if="selectedPage.page == 'form'"></Form>
 			<Table v-if="selectedPage.page == 'table'"></Table>
+			<Events v-if="selectedPage.page == 'events'"></Events>
 		</div>
 	</div>
 </div>
@@ -53,11 +54,11 @@
 
 <script>
 import Pages from "./pages";
-import { Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, LockAxis, DragDelay, DragHandle, DragClass, TransitionDuration, Cards, Form, Table } from './pages';
+import { Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, LockAxis, DragDelay, DragHandle, DragClass, TransitionDuration, Cards, Form, Table, Events } from './pages';
 export default {
 	name: "Demo",
 	components: {
-		Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, LockAxis, DragDelay, DragHandle, DragClass, TransitionDuration, Cards, Form, Table
+		Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, LockAxis, DragDelay, DragHandle, DragClass, TransitionDuration, Cards, Form, Table, Events
 	},
   data: function() {
     return {

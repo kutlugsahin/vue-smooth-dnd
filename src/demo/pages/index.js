@@ -13,9 +13,10 @@ import TransitionDuration from './transition-duration';
 import Cards from './cards';
 import Form from "./form";
 import Table from './table';
+import Events from './events';
 
 export {
-	Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, DragClass, DragDelay, DragHandle, LockAxis, TransitionDuration, Cards, Form, Table
+	Simple, SimpleHorizontal, SimpleScroller, Copy, Groups, Nested, DragClass, DragDelay, DragHandle, LockAxis, TransitionDuration, Cards, Form, Table, Events
 }
 
 const getUrl = (pagename) => {
@@ -116,6 +117,11 @@ export default [
         title: "Table",
         page: "table",
         url: getUrl("table.vue")
+      },
+      {
+        title: "Callbacks and Events",
+        page: "events",
+        url: getUrl("events.vue")
       }
     ]
   }

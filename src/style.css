@@ -282,6 +282,11 @@ body{
 }
 
 
+.wide-page{
+  margin: 50px auto;
+  padding: 0 50px;
+}
+
 .simple-page{
   max-width: 500px;
   margin-left: auto;
@@ -310,6 +315,7 @@ body{
   border: 1px solid rgba(0,0,0,.125);
   margin-bottom: 2px;
   margin-top: 2px;
+  cursor: default;
 }
 
 .draggable-item-horizontal{
@@ -323,6 +329,7 @@ body{
     outline: 0;
     border: 1px solid rgba(0,0,0,.125);
     margin-right: 4px;
+    cursor: default;
 }
 
 .form-demo{
@@ -387,14 +394,25 @@ body{
   box-shadow: 0 0 2px 5px rgba(0,0,0,0.0);
 }
 
-.form-submit-button{
+
+button {
+  padding: .8em 1.2em;
   border: 0;
-  width: 100%;
+  outline: 0;
+  margin-bottom: .5em;
   vertical-align: middle;
-  height: 40px;
   color: #eee;
   background-color: cornflowerblue;
   cursor: pointer;
+}
+
+button[disabled] {
+  opacity: .5;
+}
+
+.form-submit-button{
+  width: 100%;
+  height: 40px;
 }
 
 .label {
