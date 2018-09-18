@@ -106,31 +106,34 @@ tag="table"
 The lifecycle of a drag is both described, and can be controlled, by a series of [callbacks](#callbacks) and [events](#events), which are illustrated below for a example **containing 3 containers**:
 
 ```
-Mouse          Calls   Callback / Event        Parameters             Notes
+Mouse     Calls  Callback / Event       Parameters              Notes
 
-mousedown   o
+down   o                                                        Initial click
 
-mousemove   o
-            |          get-child-payload()     index                  Function should return payload
-            |
-            |   3 x    should-accept-drop()    srcOptions, payload    Fired for all containers
-            |
-            |   3 x    drag-start              dragResult             Fired for all containers
-            |
-            |          drag-enter
-            v
+move   o                                                        Initial drag
+       |
+       |         get-child-payload()    index                   Function should return payload
+       |
+       |   3 x   should-accept-drop()   srcOptions, payload     Fired for all containers
+       |
+       |   3 x   drag-start             dragResult              Fired for all containers
+       |
+       |         drag-enter
+       v
 
-mousemove   o
-            |   n x    drag-leave                                     Fired as draggable leaves container
-            |   n x    drag-enter                                     Fired as draggable enters container
-            v
+move   o                                                        Drag over containers
+       |
+       |   n x   drag-leave                                     Fired as draggable leaves container
+       |   n x   drag-enter                                     Fired as draggable enters container
+       v
 
-mouseup     o
-                       should-animate-drop()   srcOptions, payload    Fires once for dropped container
+up     o                                                        Finish drag
 
-                3 x    drag-end                dragResult             Fired for all containers
+                 should-animate-drop()  srcOptions, payload     Fires once for dropped container
 
-                n x    drop                    dropResult             Fired only for droppable containers
+           3 x   drag-end               dragResult              Fired for all containers
+
+           n x   drop                   dropResult              Fired only for droppable containers
 ```
 
 Note that `should-accept-drop` is fired before each drag, and before each drop, but has been omitted here for clarity.
