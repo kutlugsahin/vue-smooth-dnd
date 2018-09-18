@@ -4,13 +4,13 @@ A fast and lightweight drag&drop, sortable library for Vue.js with many configur
 
 This library consists wrapper Vue.js components over [smooth-dnd](https://github.com/kutlugsahin/smooth-dnd) library.
 
-### Demo
+## Demo
 
 View the demo here:
 
 - https://kutlugsahin.github.io/vue-smooth-dnd
 
-### Installation
+## Installation
 
 ```shell
 npm i vue-smooth-dnd
@@ -18,7 +18,7 @@ npm i vue-smooth-dnd
 
 ## Usage
 
-#### Vue 
+### Vue 
 
 ```jsx
 <template>
@@ -60,7 +60,7 @@ export default {
 Component that contains the draggable elements or components. Each of its children should be wrapped by **Draggable** component
 
 
-### Properties
+## Properties
 
 Properties define the visual behaviour of the library:
 
@@ -101,7 +101,7 @@ tag="table"
 ---
 
 
-### Lifecycle
+## Lifecycle
 
 The lifecycle of a drag is both described, and can be controlled, by a series of [callbacks](#callbacks) and [events](#events) which are illustrated below:
 
@@ -135,7 +135,7 @@ mouseup     o
 
 Note that `should-accept-drop` is fired before each drag, and before each drop, but has been omitted here for clarity.
 
-### Callbacks
+## Callbacks
 
 Callbacks provide additional logic and checks before and during user interaction.
 
@@ -208,7 +208,7 @@ shouldAnimateDrop: function(sourceContainerOptions, payload) {
 
 ---
 
-### Events
+## Events
 
 Events call user-defined handlers at particular points in the drag-and-drop lifecycle.
 
@@ -298,11 +298,11 @@ onDrop: function(dropResult) {
 	- **element** : `DOMElement` : the DOM element that is moved 
 
 
-### API: Draggable
+## API: Draggable
 
 Wrapper component for Container's children. Every child element should be wrapped with **Draggable** component.
 
-### Properties
+## Properties
 
 ### `tag`
 
