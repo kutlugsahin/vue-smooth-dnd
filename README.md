@@ -143,7 +143,7 @@ Callbacks provide additional logic and checks before and during user interaction
 
 The function to be called to get the payload object to be passed **onDrop** function.
 
-```html
+```jsx
 <Container :get-child-payload="getChildPayload">
 ```
 ```ts
@@ -165,7 +165,7 @@ getChildPayload: function(index) {
 
 The function to be called by all containers before drag starts to determine the containers to which the drop is possible. Setting this function will override the **group-name** property and only the return value of this function will be taken into account.
 
-```html
+```jsx
 <Container :should-accept-drop="shouldAcceptDrop">
 ```
 ```ts
@@ -188,7 +188,7 @@ shouldAcceptDrop: function(sourceContainerOptions, payload) {
 The function to be called by the target container to which the dragged item will be droppped.
 Sometimes dragged item's dimensions are not suitable with the target container and dropping animation can be wierd. So it can be disabled by returning **false**. If not set drop animations are enabled.
 
-```html
+```jsx
 <Container :should-animate-drop="shouldAnimateDrop">
 ```
 ```ts
@@ -216,7 +216,7 @@ Events call user-defined handlers at particular points in the drag-and-drop life
 
 Event to be emitted only by by all containers when drag start.
 
-```html
+```jsx
 <Container @drag-start="onDragStart($event)">
 ```
 ```ts
@@ -234,7 +234,7 @@ onDragStart: function({isSource, payload, willAcceptDrop}) {
 
 The function to be called by all container when drag ends. Called before **drop** event.
 
-```html
+```jsx
 <Container @drag-end="onDragEnd($event)">
 ```
 ```ts
@@ -252,7 +252,7 @@ function onDragEnd({isSource, payload, willAcceptDrop}) {
 
 The event to be emitted by the relevant container whenever a dragged item enters its boundaries while dragging.
 
-```html
+```jsx
 <Container @drag-enter="onDragEnter()">
 ```
 ```ts
@@ -265,7 +265,7 @@ onDragEnter: function() {
 
 The event to be emitted by the relevant container whenever a dragged item leaves its boundaries while dragging.
 
-```html
+```jsx
 <Container @drag-leave="onDragLeave()">
 ```
 ```ts
@@ -279,7 +279,7 @@ onDragLeave: function() {
 
 The event to be emitted by any relevant container when drop is over. (After drop animation ends). Source container and any container that could accept drop is considered relevant.
 
-```html
+```jsx
 <Container @drop="onDrop($event)">
 ```
 ```ts
