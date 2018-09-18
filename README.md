@@ -162,6 +162,7 @@ Note that additional parameters can be passed to callbacks and event handlers by
 <div v-for="(items, index) in groups"
   <Container group-name="column"
     :should-accept-drop="(src, payload) => getShouldAcceptDrop(index, src, payload)"
+    >
     ...
   </Container>
 </div>
