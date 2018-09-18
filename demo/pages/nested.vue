@@ -44,7 +44,9 @@ import { applyDrag, generateItems } from '../utils/helpers'
 
 export default {
   name: 'Nested',
+
   components: {Container, Draggable},
+
   data () {
     const res = {
       items: generateItems(30, i => ({
@@ -100,12 +102,14 @@ export default {
     onDrop (dropResult) {
       this.items = applyDrag(this.items, dropResult)
     },
+
     onInnerDrop (item, dropResult) {
       const newItems = [...this.items]
       const index = newItems.indexOf(item)
       newItems[index].items = applyDrag(newItems[index].items, dropResult)
       this.items = newItems
     },
+
     onInnerDrop2 (item, item2, dropResult) {
       const newItems = [...this.items]
       const index = newItems.indexOf(item)

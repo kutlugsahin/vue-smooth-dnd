@@ -78,12 +78,15 @@ const formInitial = [
 
 export default {
   name: 'Form',
+
   components: {Container, Draggable},
+
   data () {
     return {
       form: [...formInitial]
     }
   },
+
   methods: {
     onDrop (dropResult) {
       this.form = applyDrag(this.form, dropResult)

@@ -45,7 +45,9 @@ import { applyDrag, generateItems } from '../utils/helpers'
 
 export default {
   name: 'Groups',
+
   components: {Container, Draggable},
+
   data () {
     return {
       items1: generateItems(15, i => ({
@@ -66,19 +68,24 @@ export default {
       }))
     }
   },
+
   methods: {
     onDrop (collection, dropResult) {
       this[collection] = applyDrag(this[collection], dropResult)
     },
+
     getChildPayload1 (index) {
       return this.items1[index]
     },
+
     getChildPayload2 (index) {
       return this.items2[index]
     },
+
     getChildPayload3 (index) {
       return this.items3[index]
     },
+
     getChildPayload4 (index) {
       return this.items4[index]
     }

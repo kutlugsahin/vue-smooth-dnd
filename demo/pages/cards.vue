@@ -88,12 +88,15 @@ const scene = {
 
 export default {
   name: 'Cards',
+
   components: {Container, Draggable},
+
   data () {
     return {
       scene
     }
   },
+
   methods: {
     onColumnDrop (dropResult) {
       const scene = Object.assign({}, this.scene)
