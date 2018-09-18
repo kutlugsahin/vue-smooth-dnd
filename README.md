@@ -136,9 +136,9 @@ up     o                                                        Finish drag
            n x   drop                   dropResult              Fired only for droppable containers
 ```
 
-Note that `should-accept-drop` is fired before each drag, and before each drop, but has been omitted here for clarity.
+Note that `should-accept-drop` is fired before every `drag-start`, and before every `drag-end`, but has been omitted here for clarity.
 
-The `dragResult` parameter contains the following data:
+The `dragResult` parameter has the format:
 
 ```js
 dragResult: {
@@ -148,7 +148,7 @@ dragResult: {
 }
 ```
 
-The `dropResult` parameter contains the following data:
+The `dropResult` parameter has the format:
 
 ```js
 dropResult: {
@@ -258,7 +258,7 @@ Event to be emitted by all containers on drag start.
 <Container @drag-end="onDragStart">
 ```
 ```ts
-function onDragStart (dragResult) {
+onDragStart (dragResult) {
   const { isSource, payload, willAcceptDrop } = dragResult
 }
 ```
@@ -279,7 +279,7 @@ The function to be called by all containers on drag end. Called before [drop](#d
 <Container @drag-end="onDragEnd">
 ```
 ```ts
-function onDragEnd (dragResult) {
+onDragEnd (dragResult) {
   const { isSource, payload, willAcceptDrop } = dragResult
 }
 ```
@@ -353,10 +353,10 @@ Wrapper component for Container's children. Every child element should be wrappe
 Tag name or the node definition to render the root element of the Draggable.
 Default value is 'div'.
 
-```ts
+```jsx
 :tag="{value: 'tr', props: {class: 'my-table-row'}}"
 ```
-```ts
+```jsx
 tag="tr"
 ```
 
