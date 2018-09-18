@@ -41,13 +41,13 @@ import { applyDrag, generateItems } from "./utils";
 export default {
   name: "Simple",
   components: { Container, Draggable },
-  data: function() {
+  data() {
     return {
       items: generateItems(50, i => ({ id: i, data: "Draggable " + i }))
     };
   },
   methods: {
-    onDrop: function(dropResult) {
+    onDrop(dropResult) {
       this.items = applyDrag(this.items, dropResult);
     }
   }
@@ -106,55 +106,69 @@ tag="table"
 The lifecycle of a drag is both described, and can be controlled, by a series of [callbacks](#callbacks) and [events](#events), which are illustrated below for a example **containing 3 containers**:
 
 ```
-Mouse          Calls   Callback / Event        Parameters              Notes
+Mouse          Calls   Callback / Event        Parameters             Notes
 
 mousedown   o
 
 mousemove   o
-            |          get-child-payload()     index                   Function should return payload
+            |          get-child-payload()     index                  Function should return payload
             |
-            |   3 x    should-accept-drop()    srcOptions, payload     Fired for all containers
+            |   3 x    should-accept-drop()    srcOptions, payload    Fired for all containers
             |
-            |   3 x    drag-start              dragData                Fired for all containers
+            |   3 x    drag-start              dragResult             Fired for all containers
             |
             |          drag-enter
             v
 
 mousemove   o
-            |   n x    drag-leave                                      Fired as draggable leaves container
-            |   n x    drag-enter                                      Fired as draggable enters container
+            |   n x    drag-leave                                     Fired as draggable leaves container
+            |   n x    drag-enter                                     Fired as draggable enters container
             v
 
 mouseup     o
-                       should-animate-drop     srcOptions, payload     Fires once for dropped container
+                       should-animate-drop()   srcOptions, payload    Fires once for dropped container
 
-                3 x    drag-end                dragData                Fired for all containers
+                3 x    drag-end                dragResult             Fired for all containers
 
-                n x    drop                    dropData                Fired only for droppable containers
+                n x    drop                    dropResult             Fired only for droppable containers
 ```
 
 Note that `should-accept-drop` is fired before each drag, and before each drop, but has been omitted here for clarity.
 
-The `dragData` parameter contains the following data:
+The `dragResult` parameter contains the following data:
 
 ```js
-dragData: {
+dragResult: {
     payload,
     isSource,
     willAcceptDrop,
 }
 ```
 
-The `dropData` parameter contains the following data:
+The `dropResult` parameter contains the following data:
 
 ```js
-dropData: {
+dropResult: {
     addedIndex,
     removedIndex,
     payload,
     droppedElement,
 }
 ```
+
+Note that additional parameters can be passed to callbacks and event handlers by writing an interim handler *inline* in the markup:
+
+```jsx
+<div v-for="(items, index) in groups"
+  <Container group-name="column"
+    :should-accept-drop="(src, payload) => getShouldAcceptDrop(index, src, payload)"
+    ...
+  </Container>
+</div>
+```
+
+This can provide handler functions context-sensitive data, such as the loop index or current item.
+
 ## Callbacks
 
 Callbacks provide additional logic and checks before and during user interaction.
@@ -167,9 +181,9 @@ The function to be called to get the payload object to be passed **onDrop** func
 <Container :get-child-payload="getChildPayload">
 ```
 ```ts
-getChildPayload: function(index) {
+getChildPayload (index) {
   return {
-    ...
+    // generate custom payload data here
   }
 }
 ```
@@ -189,7 +203,7 @@ The function to be called by all containers before drag starts to determine the 
 <Container :should-accept-drop="shouldAcceptDrop">
 ```
 ```ts
-shouldAcceptDrop: function(sourceContainerOptions, payload) {
+shouldAcceptDrop (sourceContainerOptions, payload) {
   return true;
 }
 ```
@@ -197,7 +211,7 @@ shouldAcceptDrop: function(sourceContainerOptions, payload) {
 #### Parameters
 
 - **sourceContainerOptions** : `object` : options of the source container. (parent container of the dragged item)
-- **payload** : `object` : the payload object retrieved by calling *get-child-payload* function.
+- **payload** : `object` : the payload object retrieved by calling [get-child-payload](#get-child-payload) function.
 
 #### Returns
 - **boolean** : **true / false**
@@ -205,14 +219,14 @@ shouldAcceptDrop: function(sourceContainerOptions, payload) {
 
 ### `should-animate-drop()`
 
-The function to be called by the target container to which the dragged item will be droppped.
+The function to be called by the target container to which the dragged item will be dropped.
 Sometimes dragged item's dimensions are not suitable with the target container and dropping animation can be wierd. So it can be disabled by returning **false**. If not set drop animations are enabled.
 
 ```jsx
 <Container :should-animate-drop="shouldAnimateDrop">
 ```
 ```ts
-shouldAnimateDrop: function(sourceContainerOptions, payload) {
+shouldAnimateDrop (sourceContainerOptions, payload) {
   return false;
 }
 ```
@@ -220,7 +234,7 @@ shouldAnimateDrop: function(sourceContainerOptions, payload) {
 #### Parameters
 
 - **sourceContainerOptions** : `object` : options of the source container. (parent container of the dragged item)
-- **payload** : `object` : the payload object retrieved by calling *get-child-payload* function.
+- **payload** : `object` : the payload object retrieved by calling [get-child-payload](#get-child-payload) function.
 
 #### Returns
 
@@ -230,53 +244,59 @@ shouldAnimateDrop: function(sourceContainerOptions, payload) {
 
 ## Events
 
-Events call user-defined handlers at particular points in the drag-and-drop lifecycle.
+Events may call user-defined handlers at particular points in the drag-and-drop lifecycle.
 
 ### `@drag-start`
 
 Event to be emitted by all containers on drag start.
 
 ```jsx
-<Container @drag-start="onDragStart($event)">
+<Container @drag-end="onDragStart">
 ```
 ```ts
-onDragStart: function({isSource, payload, willAcceptDrop}) {
-  ...
+function onDragStart (dragResult) {
+  const { isSource, payload, willAcceptDrop } = dragResult
 }
 ```
 
 #### Parameters
-- **payload** : `object` : the payload object that is returned by [get-child-payload](#get-child-payload). It will be undefined in case get-child-payload is not set.
-- **isSource** : `boolean` : true if it is called by the container which drag starts from otherwise false.
-- **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
+
+- **dragResult** : `object`
+
+    - **payload** : `object` : the payload object that is returned by [get-child-payload](#get-child-payload). It will be undefined in case get-child-payload is not set.
+    - **isSource** : `boolean` : true if it is called by the container which drag starts from otherwise false.
+    - **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
 
 ### `@drag-end`
 
 The function to be called by all containers on drag end. Called before [drop](#drop) event.
 
 ```jsx
-<Container @drag-end="onDragEnd($event)">
+<Container @drag-end="onDragEnd">
 ```
 ```ts
-function onDragEnd({isSource, payload, willAcceptDrop}) {
-  ...
+function onDragEnd (dragResult) {
+  const { isSource, payload, willAcceptDrop } = dragResult
 }
 ```
 
 #### Parameters
-- **payload** : `object` : the payload object that is returned by [get-child-payload](#get-child-payload) function. It will be undefined in case get-child-payload is not set.
-- **isSource** : `boolean` : true if it is called by the container which drag starts from, otherwise false.
-- **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
+
+- **dragResult** : `object`
+
+    - **isSource** : `boolean` : true if it is called by the container which drag starts from, otherwise false.
+    - **payload** : `object` : the payload object that is returned by [get-child-payload](#get-child-payload) function. It will be undefined in case get-child-payload is not set.
+    - **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
 
 ### `@drag-enter`
 
 The event to be emitted by the relevant container whenever a dragged item enters its boundaries while dragging.
 
 ```jsx
-<Container @drag-enter="onDragEnter()">
+<Container @drag-enter="onDragEnter">
 ```
 ```ts
-onDragEnter: function() {
+onDragEnter () {
   ...
 }
 ```
@@ -286,24 +306,23 @@ onDragEnter: function() {
 The event to be emitted by the relevant container whenever a dragged item leaves its boundaries while dragging.
 
 ```jsx
-<Container @drag-leave="onDragLeave()">
+<Container @drag-leave="onDragLeave">
 ```
 ```ts
-onDragLeave: function() {
+onDragLeave () {
   ...
 }
 ```
-
 
 ### `@drop`
 
 The event to be emitted by any relevant container when drop is over. (After drop animation ends). Source container and any container that could accept drop is considered relevant.
 
 ```jsx
-<Container @drop="onDrop($event)">
+<Container @drop="onDrop">
 ```
 ```ts
-onDrop: function(dropResult) {
+onDrop (dropResult) {
   const { removedIndex, addedIndex, payload, element } = dropResult;
   ...
 }
@@ -312,6 +331,7 @@ onDrop: function(dropResult) {
 #### Parameters
 
 - **dropResult** : `object`
+
 	- **removedIndex** : `number` : index of the removed child. Will be `null` if no item is removed. 
 	- **addedIndex** : `number` : index to add dropped item. Will be `null` if no item is added. 
 	- **payload** : `object` : the payload object retrieved by calling [get-child-payload](#get-child-payload) function.
