@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import pages from './pages'
 import navigation from './navigation'
 
 // convert navigation to routes
@@ -10,16 +9,16 @@ const routes = navigation.reduce((routes, section) => {
     routes.push({
       name,
       path: `/${name}`,
-      component: pages[name],
+      component: page.component,
       meta: {
         title: page.title,
-        url: page.url,
       }
     })
   })
   return routes
 }, [])
 
+// set up router
 Vue.use(VueRouter)
 export default new VueRouter({
   routes: [
