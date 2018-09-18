@@ -42,7 +42,7 @@
 
 <script>
 import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, generateItems } from "./utils";
+import { applyDrag, generateItems } from "../utils";
 
 const items = generateItems(30, i => ({
   id: i,

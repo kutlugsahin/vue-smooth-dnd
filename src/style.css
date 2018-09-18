@@ -147,8 +147,7 @@ body{
 .menu-section li{
   font-size: 14px;
   margin: 0;
-  padding: 10px;
-  padding-left: 30px;
+  padding: .5em .5em .5em 30px;
   cursor: pointer;
   margin-bottom: 5px;
 }
@@ -157,8 +156,9 @@ body{
   background-color: ghostwhite;
 }
 
-.menu-section li.selected{
-  background-color: ghostwhite;  
+.router-link-active,
+.menu-section li.selected {
+  background-color: ghostwhite;
 }
 
 .content{
@@ -316,6 +316,7 @@ body{
   margin-bottom: 2px;
   margin-top: 2px;
   cursor: default;
+  user-select: none;
 }
 
 .draggable-item-horizontal{
@@ -415,8 +416,13 @@ button[disabled] {
   height: 40px;
 }
 
+button,
+label {
+  user-select: none;
+}
+
 .label {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .field {

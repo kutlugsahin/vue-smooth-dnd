@@ -63,7 +63,7 @@
 
 <script>
 import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, generateItems } from "./utils";
+import { applyDrag, generateItems } from "../utils";
 
 const formInitial = [
   { type: "header" },
