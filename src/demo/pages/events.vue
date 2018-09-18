@@ -3,21 +3,29 @@
 
     <div class="columns">
 
-      <div v-for="(items, groupIndex) in groups"
-           :key="groupIndex"
+      <div v-for="(items, index) in groups"
+           :key="index"
            class="column"
       >
-        <Container group-name="column"
+        <div>
+          <label>
+            <input type="checkbox" v-model="flags[index].drop"> Accept Drop
+          </label>
+          <label>
+            <input type="checkbox" v-model="flags[index].animate"> Animate Drop
+          </label>
+        </div>
+        <Container :data-index="index" group-name="column"
 
-                   :get-child-payload="itemIndex => getChildPayload(groupIndex, itemIndex)"
-                   :should-accept-drop="getShouldAcceptDrop"
-                   :should-animate-drop="getShouldAnimateDrop"
+           :get-child-payload="itemIndex => getChildPayload(index, itemIndex)"
+           :should-accept-drop="(src, payload) => getShouldAcceptDrop(index, src, payload)"
+           :should-animate-drop="(src, payload) => getShouldAnimateDrop(index, src, payload)"
 
-                   @drag-start="onDragStart"
-                   @drag-enter="onDragEnter(groupIndex)"
-                   @drag-leave="onDragLeave(groupIndex)"
-                   @drag-end="onDragEnd"
-                   @drop="onDrop(groupIndex, $event)"
+           @drag-start="onDragStart"
+           @drag-enter="onDragEnter(index)"
+           @drag-leave="onDragLeave(index)"
+           @drag-end="onDragEnd"
+           @drop="onDrop(index, $event)"
         >
           <Draggable v-for="item in items" :key="item.id">
             <div class="draggable-item">
@@ -50,7 +58,7 @@
 
 <script>
 import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, generateItems } from "./utils";
+import { applyDrag, generateItems } from "../utils";
 import Vue from 'vue'
 
 var i = 0;
@@ -75,7 +83,8 @@ export default {
 
   data: function() {
     return {
-      logPayload: true,
+      groups: [],
+      flags:[],
       logs: {
         'get-child-payload': true,
         'should-accept-drop': false,
@@ -86,11 +95,12 @@ export default {
         'drag-leave': true,
         'drop': true,
       },
-
-      groups: [
-        generate(1)
-      ],
+      logPayload: true,
     };
+  },
+
+  created () {
+    this.addColumn()
   },
 
   methods: {
@@ -103,14 +113,14 @@ export default {
       return this.groups[groupIndex][itemIndex];
     },
 
-    getShouldAnimateDrop: function (sourceContainerOptions, payload) {
-      this.log('should-animate-drop', sourceContainerOptions, payload)
-      return true
+    getShouldAcceptDrop: function (index, sourceContainerOptions, payload) {
+      this.log('should-accept-drop', sourceContainerOptions, payload)
+      return this.flags[index].drop
     },
 
-    getShouldAcceptDrop: function (sourceContainerOptions, payload) {
-      this.log('should-accept-drop', sourceContainerOptions, payload)
-      return true
+    getShouldAnimateDrop: function (index, sourceContainerOptions, payload) {
+      this.log('should-animate-drop', sourceContainerOptions, payload)
+      return this.flags[index].animate
     },
 
 
@@ -145,10 +155,12 @@ export default {
 
     addColumn: function () {
       this.groups.push(generate(this.groups.length + 1))
+      this.flags.push({drop: true, animate: true})
     },
 
     removeColumn: function () {
       this.groups.pop()
+      this.flags.pop()
     },
 
     log: function (name, ...args) {
@@ -173,7 +185,7 @@ export default {
     padding-top: 1em;
   }
 
-  .controls label {
+  label {
     display: block;
     line-height: 1.6em;
   }
@@ -188,8 +200,16 @@ export default {
     flex: 1;
   }
 
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
   .column .smooth-dnd-container.vertical {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
 </style>
