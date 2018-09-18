@@ -135,6 +135,26 @@ mouseup     o
 
 Note that `should-accept-drop` is fired before each drag, and before each drop, but has been omitted here for clarity.
 
+The `dragData` parameter contains the following data:
+
+```js
+dragData: {
+    payload,
+    isSource,
+    willAcceptDrop,
+}
+```
+
+The `dropData` parameter contains the following data:
+
+```js
+dropData: {
+    addedIndex,
+    removedIndex,
+    payload,
+    droppedElement,
+}
+```
 ## Callbacks
 
 Callbacks provide additional logic and checks before and during user interaction.
@@ -214,7 +234,7 @@ Events call user-defined handlers at particular points in the drag-and-drop life
 
 ### `@drag-start`
 
-Event to be emitted only by by all containers when drag start.
+Event to be emitted by all containers on drag start.
 
 ```jsx
 <Container @drag-start="onDragStart($event)">
@@ -226,13 +246,13 @@ onDragStart: function({isSource, payload, willAcceptDrop}) {
 ```
 
 #### Parameters
+- **payload** : `object` : the payload object that is returned by [get-child-payload](#get-child-payload). It will be undefined in case get-child-payload is not set.
 - **isSource** : `boolean` : true if it is called by the container which drag starts from otherwise false.
-- **payload** : `object` : the payload object that is returned by get-child-payload function. It will be undefined in case get-child-payload is not set.
 - **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
 
 ### `@drag-end`
 
-The function to be called by all container when drag ends. Called before **drop** event.
+The function to be called by all containers on drag end. Called before [drop](#drop) event.
 
 ```jsx
 <Container @drag-end="onDragEnd($event)">
@@ -244,8 +264,8 @@ function onDragEnd({isSource, payload, willAcceptDrop}) {
 ```
 
 #### Parameters
+- **payload** : `object` : the payload object that is returned by [get-child-payload](#get-child-payload) function. It will be undefined in case get-child-payload is not set.
 - **isSource** : `boolean` : true if it is called by the container which drag starts from, otherwise false.
-- **payload** : `object` : the payload object that is returned by get-child-payload function. It will be undefined in case get-child-payload is not set.
 - **willAcceptDrop** : `boolean` : true if the dragged item can be dropped into the container, otherwise false.
 
 ### `@drag-enter`
@@ -292,10 +312,10 @@ onDrop: function(dropResult) {
 #### Parameters
 
 - **dropResult** : `object`
-	- **removedIndex** : `number` : index of the removed children. Will be `null` if no item is removed. 
+	- **removedIndex** : `number` : index of the removed child. Will be `null` if no item is removed. 
 	- **addedIndex** : `number` : index to add dropped item. Will be `null` if no item is added. 
-	- **payload** : `object` : the payload object retrieved by calling *get-child-payload* function.
-	- **element** : `DOMElement` : the DOM element that is moved 
+	- **payload** : `object` : the payload object retrieved by calling [get-child-payload](#get-child-payload) function.
+	- **droppedElement** : `DOMElement` : the DOM element that is moved 
 
 
 ## API: Draggable
