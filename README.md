@@ -103,34 +103,34 @@ tag="table"
 
 ## Lifecycle
 
-The lifecycle of a drag is both described, and can be controlled, by a series of [callbacks](#callbacks) and [events](#events) which are illustrated below:
+The lifecycle of a drag is both described, and can be controlled, by a series of [callbacks](#callbacks) and [events](#events), which are illustrated below for a example **containing 3 containers**:
 
 ```
-Mouse          Calls   Callback / Event         Parameters              Notes
+Mouse          Calls   Callback / Event        Parameters              Notes
 
 mousedown   o
 
 mousemove   o
-            |          get-child-payload()      index                   Function should return payload
+            |          get-child-payload()     index                   Function should return payload
             |
-            |   3 x    should-accept-drop()     srcOptions, payload     Fired for all containers
+            |   3 x    should-accept-drop()    srcOptions, payload     Fired for all containers
             |
-            |   3 x    drag-start               dragData                Fired for all containers
+            |   3 x    drag-start              dragData                Fired for all containers
             |
             |          drag-enter
             v
 
 mousemove   o
-            |   n x    drag-leave                                       Fired as draggable leaves container
-            |   n x    drag-enter                                       Fired as draggable enters container
+            |   n x    drag-leave                                      Fired as draggable leaves container
+            |   n x    drag-enter                                      Fired as draggable enters container
             v
 
 mouseup     o
-                       should-animate-drop      srcOptions, payload     Fires once for dropped container
+                       should-animate-drop     srcOptions, payload     Fires once for dropped container
 
-                3 x    drag-end                 dragData                Fired for all containers
+                3 x    drag-end                dragData                Fired for all containers
 
-                n x    drop                     dropData                Fired only for droppable containers
+                n x    drop                    dropData                Fired only for droppable containers
 ```
 
 Note that `should-accept-drop` is fired before each drag, and before each drop, but has been omitted here for clarity.
