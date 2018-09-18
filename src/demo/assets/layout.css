@@ -1,0 +1,42 @@
+* {
+    font-family: 'Oxygen', sans-serif;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.app {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    background-color: #f8f9fa;
+    min-width: 0;
+}
+
+.demo {
+    flex: 1;
+    overflow: auto;
+    min-width: 0;
+}
+
+
+.wide-page {
+    margin: 50px auto;
+    padding: 0 50px;
+}
+
+.simple-page {
+    max-width: 500px;
+    margin: 50px auto;
+}

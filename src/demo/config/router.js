@@ -11,7 +11,7 @@ const routes = navigation.reduce((routes, section) => {
       path: `/${name}`,
       component: page.component,
       meta: {
-        title: page.title,
+        title: page.title
       }
     })
   })

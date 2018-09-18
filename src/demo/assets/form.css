@@ -1,0 +1,94 @@
+
+
+.form-field {
+    height: 50px;
+    width: 250px;
+    line-height: 30px;
+    vertical-align: middle;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
+    /* background-color: #eee; */
+    cursor: move;
+
+}
+
+.form-line {
+    padding: 20px 30px;
+    background-color: #f8f9fa;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: all .3s ease;
+    transition-property: border-color, background-color;
+    cursor: move;
+}
+
+.form-line.selected {
+    /* border: 1px solid #ddd; */
+    background-color: #f8f9fa;
+    /* box-shadow: 0px 0px 10px 10px #ccc; */
+}
+
+
+button {
+    padding: .8em 1.2em;
+    border: 0;
+    outline: 0;
+    margin-bottom: .5em;
+    vertical-align: middle;
+    color: #eee;
+    background-color: cornflowerblue;
+    cursor: pointer;
+}
+
+button[disabled] {
+    opacity: .5;
+}
+
+.form-submit-button {
+    width: 100%;
+    height: 40px;
+}
+
+button,
+label {
+    user-select: none;
+}
+
+.label {
+    margin-bottom: 5px;
+}
+
+.field {
+    cursor: auto;
+}
+
+.field input, .field textarea, .field select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color .3s ease;
+}
+
+.field input[type="radio"], .field input[type="checkbox"] {
+    width: auto;
+}
+
+.field input:focus, textarea:focus {
+    border: 1px solid #80bdff;
+    box-shadow: 0 0 3px 0px #80bdff;
+}
+
+.field-group input, .field-group textarea, .field-group select {
+    width: 49%;
+    margin-right: 2%;
+}
+
+input:last-child {
+    margin-right: 0;
+}
+

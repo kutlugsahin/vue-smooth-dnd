@@ -1,14 +1,16 @@
 <template>
-  <div :class="'app'">
-    <div :class="navButtonClass" @click="toggleNav()">
+  <div class="app">
+
+    <div class="nav-button" :class="openClass" @click="toggleNav()">
       <span></span>
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <div :class="navigatorClass">
-      <div class="navigator-content">
-        <div class="navigator-header">
+
+    <div class="nav" :class="openClass">
+      <div class="nav-content">
+        <div class="nav-header">
           <h3>vue-smooth-dnd</h3>
           <div class="divider"></div>
         </div>
@@ -17,17 +19,19 @@
             <h4>{{ section.title }}</h4>
             <ul>
               <router-link v-for="page in section.pages"
-                           :key="page.title"
-                           tag="li"
-                           :to="page.name"
-              >{{ page.title }}</router-link>
+                :key="page.title"
+                tag="li"
+                :to="page.name"
+              >{{ page.title }}
+              </router-link>
             </ul>
           </div>
         </div>
       </div>
     </div>
+
     <div class="content">
-      <div :class="headerClass">
+      <div class="header" :class="openClass">
         {{ $router.currentRoute.meta.title }}
         <div class="source-code" @click="openCode()">
           <img
@@ -40,46 +44,36 @@
         <router-view></router-view>
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
-  import pages from './config/navigation'
+import pages from './config/navigation'
 
-  export default {
-    name: 'Demo',
-    data: function () {
-      return {
-        pages,
-        isNavOpen: true,
-      }
+export default {
+  name: 'Demo',
+  data: function () {
+    return {
+      pages,
+      isNavOpen: true
+    }
+  },
+  methods: {
+    toggleNav: function () {
+      this.isNavOpen = !this.isNavOpen
     },
-    methods: {
-      toggleNav: function () {
-        this.isNavOpen = !this.isNavOpen
-      },
-      openCode () {
-        const name = this.$router.currentRoute.name
-        const url = `https://github.com/kutlugsahin/vue-smooth-dnd/blob/master/src/demo/pages/${name}.vue`
-        window.open(url, '_blank')
-      }
-    },
+    openCode () {
+      const name = this.$router.currentRoute.name
+      const url = `https://github.com/kutlugsahin/vue-smooth-dnd/blob/master/src/demo/pages/${name}.vue`
+      window.open(url, '_blank')
+    }
+  },
 
-    computed: {
-      navButtonClass: function () {
-        return `nav-button${this.isNavOpen ? ' open' : ' closed'}`
-      },
-
-      navigatorClass: function () {
-        return `navigator${this.isNavOpen ? ' open' : ' closed'}`
-      },
-
-      headerClass: function () {
-        return `header${this.isNavOpen ? ' open' : ' closed'}`
-      }
+  computed: {
+    openClass () {
+      return this.isNavOpen ? 'open' : 'closed'
     }
   }
+}
 </script>
-
-<style src="../style.css"/>
-

@@ -4,8 +4,8 @@
     <div class="columns">
 
       <div v-for="(items, index) in groups"
-           :key="index"
-           class="column"
+        :key="index"
+        class="column"
       >
         <div>
           <label>
@@ -17,15 +17,15 @@
         </div>
         <Container :data-index="index" group-name="column"
 
-           :get-child-payload="itemIndex => getChildPayload(index, itemIndex)"
-           :should-accept-drop="(src, payload) => getShouldAcceptDrop(index, src, payload)"
-           :should-animate-drop="(src, payload) => getShouldAnimateDrop(index, src, payload)"
+          :get-child-payload="itemIndex => getChildPayload(index, itemIndex)"
+          :should-accept-drop="(src, payload) => getShouldAcceptDrop(index, src, payload)"
+          :should-animate-drop="(src, payload) => getShouldAnimateDrop(index, src, payload)"
 
-           @drag-start="onDragStart"
-           @drag-enter="onDragEnter(index)"
-           @drag-leave="onDragLeave(index)"
-           @drag-end="onDragEnd"
-           @drop="onDrop(index, $event)"
+          @drag-start="onDragStart"
+          @drag-enter="onDragEnter(index)"
+          @drag-leave="onDragLeave(index)"
+          @drag-end="onDragEnd"
+          @drop="onDrop(index, $event)"
         >
           <Draggable v-for="item in items" :key="item.id">
             <div class="draggable-item">
@@ -43,7 +43,7 @@
         <button @click="addColumn()">Add Column</button>
       </div>
       <div>
-        <label v-for="(key, name) in logs">
+        <label v-for="(key, name) in logs" :key="name">
           <input type="checkbox" v-model="logs[name]"> {{ name }}
         </label>
         <hr>
@@ -57,13 +57,14 @@
 </template>
 
 <script>
-import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, generateItems } from "../utils";
+import { Container, Draggable } from 'vue-smooth-dnd'
+import { applyDrag, generateItems } from '../utils/helpers'
 import Vue from 'vue'
 
-var i = 0;
+let i = 0
+
 function id () {
-  return `item-${++i}`;
+  return `item-${++i}`
 }
 
 function generate (num) {
@@ -74,17 +75,17 @@ function generate (num) {
 }
 
 export default {
-  name: "Groups",
+  name: 'Events',
 
   components: {
     Container,
     Draggable
   },
 
-  data: function() {
+  data () {
     return {
       groups: [],
-      flags:[],
+      flags: [],
       logs: {
         'get-child-payload': true,
         'should-accept-drop': false,
@@ -93,10 +94,10 @@ export default {
         'drag-end': true,
         'drag-enter': true,
         'drag-leave': true,
-        'drop': true,
+        'drop': true
       },
-      logPayload: true,
-    };
+      logPayload: true
+    }
   },
 
   created () {
@@ -108,62 +109,60 @@ export default {
     // -----------------------------------------------------------------------------------------------------------------
     // callbacks
 
-    getChildPayload: function(groupIndex, itemIndex) {
-      this.log('get-child-payload', groupIndex, itemIndex);
-      return this.groups[groupIndex][itemIndex];
+    getChildPayload (groupIndex, itemIndex) {
+      this.log('get-child-payload', groupIndex, itemIndex)
+      return this.groups[groupIndex][itemIndex]
     },
 
-    getShouldAcceptDrop: function (index, sourceContainerOptions, payload) {
+    getShouldAcceptDrop (index, sourceContainerOptions, payload) {
       this.log('should-accept-drop', sourceContainerOptions, payload)
       return this.flags[index].drop
     },
 
-    getShouldAnimateDrop: function (index, sourceContainerOptions, payload) {
+    getShouldAnimateDrop (index, sourceContainerOptions, payload) {
       this.log('should-animate-drop', sourceContainerOptions, payload)
       return this.flags[index].animate
     },
 
-
     // -----------------------------------------------------------------------------------------------------------------
     // events
 
-    onDragStart: function (...args) {
-      this.log('drag-start', ...args);
+    onDragStart (...args) {
+      this.log('drag-start', ...args)
     },
 
-    onDragEnd: function (...args) {
-      this.log('drag-end', ...args);
+    onDragEnd (...args) {
+      this.log('drag-end', ...args)
     },
 
-    onDragEnter: function (...args) {
-      this.log('drag-enter', ...args);
+    onDragEnter (...args) {
+      this.log('drag-enter', ...args)
     },
 
-    onDragLeave: function (...args) {
-      this.log('drag-leave', ...args);
+    onDragLeave (...args) {
+      this.log('drag-leave', ...args)
     },
 
-    onDrop: function(groupIndex, dropResult) {
-      let result = applyDrag(this.groups[groupIndex], dropResult);
-      Vue.set(this.groups, groupIndex, result);
-      this.log('drop', dropResult);
+    onDrop (groupIndex, dropResult) {
+      let result = applyDrag(this.groups[groupIndex], dropResult)
+      Vue.set(this.groups, groupIndex, result)
+      this.log('drop', dropResult)
     },
-
 
     // -----------------------------------------------------------------------------------------------------------------
     // app
 
-    addColumn: function () {
+    addColumn () {
       this.groups.push(generate(this.groups.length + 1))
       this.flags.push({drop: true, animate: true})
     },
 
-    removeColumn: function () {
+    removeColumn () {
       this.groups.pop()
       this.flags.pop()
     },
 
-    log: function (name, ...args) {
+    log (name, ...args) {
       if (this.logs[name]) {
         this.logPayload
           ? console.log(name, ...args)

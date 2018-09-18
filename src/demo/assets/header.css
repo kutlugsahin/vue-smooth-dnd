@@ -1,0 +1,36 @@
+.header {
+    height: 60px;
+    background-color: #41b883;
+    box-shadow: 2px 0px 4px #ccc;
+    z-index: 0;
+    color: white;
+    font-size: 20px;
+    padding: 0 50px;
+    vertical-align: middle;
+    line-height: 60px;
+}
+
+.header.open {
+    padding: 0 20px;
+}
+
+.source-code {
+    float: right;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.source-code img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.source-code span {
+    font-size: 14px;
+    color: #eee;
+    margin-left: 10px;
+    vertical-align: middle;
+}

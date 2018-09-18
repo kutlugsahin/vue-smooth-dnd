@@ -1,0 +1,167 @@
+.nav-button {
+    display: none;
+    position: fixed;
+    left: 10px;
+    top: 20px;
+    z-index: 3;
+    width: 30px;
+    height: 30px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+
+.nav-button.open {
+    left: 310px;
+}
+
+.nav-button.open span {
+    background: #ccc;
+}
+
+.nav-button span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #fff;
+    border-radius: 4px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+}
+
+/* Icon 3 */
+
+.nav-button span:nth-child(1) {
+    top: 0px;
+}
+
+.nav-button span:nth-child(2), .nav-button span:nth-child(3) {
+    top: 8px;
+}
+
+.nav-button span:nth-child(4) {
+    top: 16px;
+}
+
+.nav-button.open span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+.nav-button.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.nav-button.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.nav-button.open span:nth-child(4) {
+    top: 8px;
+    width: 0%;
+    left: 50%;
+}
+
+.navigator {
+    width: 350px;
+    flex-shrink: 0;
+    box-shadow: 0px 2px 5px #ccc;
+    background-color: white;
+    z-index: 1;
+    transition: width .3s ease-in-out;
+    overflow: hidden;
+}
+
+@media (max-width: 700px) {
+    .navigator {
+        position: fixed;
+        height: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    .nav-button {
+        display: block;
+    }
+}
+
+
+.nav-panel {
+    flex-shrink: 0;
+    width: 300px;
+}
+
+
+.nav.closed {
+    width: 0;
+}
+
+.nav-content {
+    padding-top: 0px;
+    width: 350px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.nav-header h3 {
+    padding-left: 10px;
+}
+
+.divider {
+    height: 1px;
+    border-bottom: 1px solid #ddd;
+    margin-top: -2px;
+}
+
+.menu-section h4 {
+    color: #444;
+    padding-left: 10px;
+}
+
+.menu-section ul {
+    color: #666;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-section li {
+    font-size: 14px;
+    margin: 0;
+    padding: .5em .5em .5em 30px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.menu-section li:hover {
+    background-color: ghostwhite;
+}
+
+.router-link-active,
+.menu-section li.selected {
+    background-color: ghostwhite;
+}
+
