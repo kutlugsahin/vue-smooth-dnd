@@ -147,8 +147,7 @@ body{
 .menu-section li{
   font-size: 14px;
   margin: 0;
-  padding: 10px;
-  padding-left: 30px;
+  padding: .5em .5em .5em 30px;
   cursor: pointer;
   margin-bottom: 5px;
 }
@@ -157,8 +156,9 @@ body{
   background-color: ghostwhite;
 }
 
-.menu-section li.selected{
-  background-color: ghostwhite;  
+.router-link-active,
+.menu-section li.selected {
+  background-color: ghostwhite;
 }
 
 .content{
@@ -282,6 +282,11 @@ body{
 }
 
 
+.wide-page{
+  margin: 50px auto;
+  padding: 0 50px;
+}
+
 .simple-page{
   max-width: 500px;
   margin-left: auto;
@@ -310,6 +315,8 @@ body{
   border: 1px solid rgba(0,0,0,.125);
   margin-bottom: 2px;
   margin-top: 2px;
+  cursor: default;
+  user-select: none;
 }
 
 .draggable-item-horizontal{
@@ -323,6 +330,7 @@ body{
     outline: 0;
     border: 1px solid rgba(0,0,0,.125);
     margin-right: 4px;
+    cursor: default;
 }
 
 .form-demo{
@@ -387,18 +395,34 @@ body{
   box-shadow: 0 0 2px 5px rgba(0,0,0,0.0);
 }
 
-.form-submit-button{
+
+button {
+  padding: .8em 1.2em;
   border: 0;
-  width: 100%;
+  outline: 0;
+  margin-bottom: .5em;
   vertical-align: middle;
-  height: 40px;
   color: #eee;
   background-color: cornflowerblue;
   cursor: pointer;
 }
 
+button[disabled] {
+  opacity: .5;
+}
+
+.form-submit-button{
+  width: 100%;
+  height: 40px;
+}
+
+button,
+label {
+  user-select: none;
+}
+
 .label {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .field {
