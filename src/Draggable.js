@@ -1,4 +1,3 @@
-<script>
 import { constants } from "smooth-dnd";
 import { getTagProps, validateTagProp } from "./utils";
 
@@ -23,5 +22,4 @@ export default {
     return wrapChild(createElement, this);
   }
 };
-</script>
 

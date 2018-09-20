@@ -1,16 +1,18 @@
 .DS_Store
 node_modules/
-/dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+dist/
+npm-debug.log
+yarn-error.log
+
+build/.rpt2_cache
+tests/coverage
+/coverage
+
 
 # Editor directories and files
-.idea
 .vscode
+.idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-
-vue-smooth-dnd/dist

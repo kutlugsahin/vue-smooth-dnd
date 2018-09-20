@@ -1,4 +1,3 @@
-<script>
 import SmoothDnD, { dropHandlers } from 'smooth-dnd';
 import { getTagProps, validateTagProp } from "./utils";
 
@@ -115,5 +114,4 @@ export default {
     );
   },
 };
-</script>
 
