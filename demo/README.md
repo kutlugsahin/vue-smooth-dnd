@@ -1,14 +1,14 @@
 # Vue Smooth DnD Demo
 
-View the demo on Netlify:
+View the demo:
 
-- [vue-smooth-dnd.netlify.com](https://vue-smooth-dnd.netlify.com)
+- [kutlugsahin.github.io/vue-smooth-dnd](https://kutlugsahin.github.io/vue-smooth-dnd)
 
 View and edit the demo on Code Sandbox:
 
 - [codesandbox.io/s/github/kutlugsahin/vue-smooth-dnd/tree/master/demo](https://codesandbox.io/s/github/kutlugsahin/vue-smooth-dnd/tree/master/demo)
 
-View the source code here:
+View the source code on GitHub:
 
 - [github.com/kutlugsahin/vue-smooth-dnd/tree/master/demo](https://github.com/kutlugsahin/vue-smooth-dnd/tree/master/demo)
 

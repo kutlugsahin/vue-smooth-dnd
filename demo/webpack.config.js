@@ -6,7 +6,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 var src = path.resolve(__dirname, './src')
 var dist = path.resolve(__dirname, './dist')
-var lib = path.resolve(__dirname, '../src/main.js')
+var lib = path.resolve(__dirname, '../dist/vue-smooth-dnd.js')
 
 function resolve (path) {
   return src + '/' + (path || '')
@@ -93,8 +93,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@':          resolve(''),
-      'vue$':       'vue/dist/vue.esm.js',
+      '@': resolve(''),
+      'vue$': 'vue/dist/vue.esm.js',
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
