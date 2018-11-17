@@ -78,6 +78,7 @@ Properties define the visual behaviour of the library:
  |  :auto-scroll-enabled | boolean | `true` | First scrollable parent will scroll automatically if dragging item is close to boundaries.
  |  :drag-class | string | `undefined` | Class to be added to the ghost item being dragged. The class will be added after it's added to the DOM so any transition in the class will be applied as intended.
  |  :drop-class | string | `undefined` | Class to be added to the ghost item just before the drop animation begins.
+|:remove-on-drop-out|boolean|`undefined`|When set true onDrop will be called with a removedIndex if you drop element out of any relevant container|
 
 
 ### `tag`
@@ -315,6 +316,20 @@ The event to be emitted by the relevant container whenever a dragged item leaves
 ```ts
 onDragLeave () {
   ...
+}
+```
+
+### `@get-ghost-parent`
+
+The function to be called to get the element that the dragged ghost will be appended. Default parent element is the container itself.
+The ghost element is positioned as 'fixed' and appended to given parent element. 
+But if any anchestor of container has a transform property, ghost element will be positioned relative to that element which breaks the calculations. Thats why if you have any transformed parent element of Containers you should set this property so that it returns any element that has not transformed parent element.
+```jsx
+<Container :get-ghost-parent="getGhostParent">
+```
+```ts
+getGhostParent() {
+  // i.e return document.body;
 }
 ```
 

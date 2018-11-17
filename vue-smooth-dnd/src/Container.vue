@@ -26,6 +26,7 @@ const mapOptions = context => {
   if (props.lockAxis) options.lockAxis = props.lockAxis;
   if (props.dragClass) options.dragClass = props.dragClass;
   if (props.dropClass) options.dropClass = props.dropClass;
+  if (props.removeOnDropOut) options.removeOnDropOut = props.removeOnDropOut;
   if (props['drag-start']) {
     options.onDragStart = params => {
       context.$emit('drag-start', params);
@@ -55,6 +56,7 @@ const mapOptions = context => {
       context.$emit('drag-leave');
     };
   }
+  if (props.getGhostParent) options.getGhostParent = props.getGhostParent;
   return options;
 };
 
@@ -93,6 +95,7 @@ export default {
     lockAxis: String,
     dragClass: String,
     dropClass: String,
+    removeOnDropOut: { type: Boolean, default: false },
     'drag-start': Function,
     'drag-end': Function,
     drop: Function,
@@ -105,6 +108,7 @@ export default {
       validator: validateTagProp,
       default: 'div',
     },
+    getGhostParent: Function,
   },
   render: function(createElement) {
     const tagProps = getTagProps(this);

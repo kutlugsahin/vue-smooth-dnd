@@ -75,6 +75,7 @@ Component that contains the draggable elements or components. Each of its childr
 |:auto-scroll-enabled|boolean|`true`|First scrollable parent will scroll automatically if dragging item is close to boundaries.
 |:drag-class|string|`undefined`|Class to be added to the ghost item being dragged. The class will be added after it's added to the DOM so any transition in the class will be applied as intended.
 |:drop-class|string|`undefined`|Class to be added to the ghost item just before the drop animation begins.|
+|:remove-on-drop-out|boolean|`undefined`|When set true onDrop will be called with a removedIndex if you drop element out of any relevant container|
 |@drag-start|function|`undefined`|*See descriptions below*|
 |@drag-end|function|`undefined`|*See descriptions below*|
 |@drop|function|`undefined`|*See descriptions below*|
@@ -83,6 +84,7 @@ Component that contains the draggable elements or components. Each of its childr
 |:should-accept-drop|function|`undefined`|*See descriptions below*|
 |@drag-enter|function|`undefined`|*See descriptions below*|
 |@drag-leave|function|`undefined`|*See descriptions below*|
+|:get-ghost-parent|function|`undefined`|*See descriptions below*|
 |:tag|string or NodeDescription|`div`|*See descriptions below*|
 
 ---
@@ -210,6 +212,20 @@ onDragLeave: function() {
   ...
 }
 ```
+
+### get-ghost-parent
+
+The function to be called to get the element that the dragged ghost will be appended. Default parent element is the container itself.
+The ghost element is positioned as 'fixed' and appended to given parent element. 
+But if any anchestor of container has a transform property, ghost element will be positioned relative to that element which breaks the calculations. Thats why if you have any transformed parent element of Containers you should set this property so that it returns any element that has not transformed parent element.
+```js
+:get-ghost-parent="getGhostParent"
+
+function getGhostParent() {
+  // i.e return document.body;
+}
+```
+
 ### tag
 
 Tag name or the node definition to render the root element of the container.

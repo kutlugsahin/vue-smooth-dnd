@@ -1,6 +1,6 @@
 <template>
   <div class="simple-page">
-    <Container @drop="onDrop">
+    <Container @drop="onDrop" :get-ghost-parent="getGhostParent" :remove-on-drop-out="true">
       <Draggable v-for="item in items" :key="item.id">
         <div class="draggable-item">
           {{item.data}}
@@ -28,6 +28,9 @@ export default {
   methods: {
     onDrop (dropResult) {
       this.items = applyDrag(this.items, dropResult)
+    },
+    getGhostParent(){
+      return document.body;
     }
   }
 }
