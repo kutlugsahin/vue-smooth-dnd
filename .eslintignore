@@ -1,5 +1,2 @@
-/build/
-/config/
-/dist/
-/*.js
-/vue-smooth-dnd/dist
+node_modules/
+dist/

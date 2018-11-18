@@ -1,4 +1,4 @@
-# vue-smooth-dnd
+# Vue Smooth DnD
 
 A fast and lightweight drag&drop, sortable library for Vue.js with many configuration options covering many d&d scenarios.
 
@@ -245,6 +245,24 @@ shouldAnimateDrop (sourceContainerOptions, payload) {
 
 - **boolean** : **true / false**
 
+### `get-ghost-parent()`
+
+The function to be called to get the element that the dragged ghost will be appended. Default parent element is the container itself.
+The ghost element is positioned as 'fixed' and appended to given parent element. 
+But if any anchestor of container has a transform property, ghost element will be positioned relative to that element which breaks the calculations. Thats why if you have any transformed parent element of Containers you should set this property so that it returns any element that has not transformed parent element.
+```jsx
+<Container :get-ghost-parent="getGhostParent">
+```
+```ts
+getGhostParent() {
+  // i.e return document.body;
+}
+```
+
+#### Returns
+
+- **Element** : **Any DOM element that the ghost will be appended in**
+
 ---
 
 ## Events
@@ -319,20 +337,6 @@ onDragLeave () {
 }
 ```
 
-### `@get-ghost-parent`
-
-The function to be called to get the element that the dragged ghost will be appended. Default parent element is the container itself.
-The ghost element is positioned as 'fixed' and appended to given parent element. 
-But if any anchestor of container has a transform property, ghost element will be positioned relative to that element which breaks the calculations. Thats why if you have any transformed parent element of Containers you should set this property so that it returns any element that has not transformed parent element.
-```jsx
-<Container :get-ghost-parent="getGhostParent">
-```
-```ts
-getGhostParent() {
-  // i.e return document.body;
-}
-```
-
 ### `@drop`
 
 The event to be emitted by any relevant container when drop is over. (After drop animation ends). Source container and any container that could accept drop is considered relevant.
@@ -355,7 +359,6 @@ onDrop (dropResult) {
 	- **addedIndex** : `number` : index to add dropped item. Will be `null` if no item is added. 
 	- **payload** : `object` : the payload object retrieved by calling [get-child-payload](#get-child-payload) function.
 	- **droppedElement** : `DOMElement` : the DOM element that is moved 
-
 
 ## API: Draggable
 
@@ -380,4 +383,3 @@ tag="tr"
 - object : Node definition
   - value: string : tag name
   - props: data object to define element properties. see [https://vuejs.org/v2/guide/render-function.html#The-Data-Object-In-Depth](https://vuejs.org/v2/guide/render-function.html#The-Data-Object-In-Depth)
-
