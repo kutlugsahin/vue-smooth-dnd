@@ -65,7 +65,7 @@ export default {
     },
     openCode () {
       const name = this.$router.currentRoute.name
-      const url = `https://github.com/kutlugsahin/vue-smooth-dnd/blob/master/src/demo/pages/${name}.vue`
+      const url = `https://github.com/kutlugsahin/vue-smooth-dnd/tree/master/demo/src/pages/${name}.vue`
       window.open(url, '_blank')
     }
   },
