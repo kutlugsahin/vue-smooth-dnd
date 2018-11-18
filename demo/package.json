@@ -3,7 +3,8 @@
   "description": "Vue Smooth DnD - Demo project",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "demo": "cross-env NODE_ENV=production:demo webpack --progress --hide-modules"
+    "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "deploy": "npm run demo && gh-pages -d dist"
   },
   "dependencies": {
     "vue": "^2.5.16",
@@ -23,6 +24,7 @@
     "cross-env": "^5.1.5",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.4",
+    "gh-pages": "^2.0.1",
     "node-sass": "^4.9.2",
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.6",
