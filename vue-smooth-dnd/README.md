@@ -221,7 +221,7 @@ But if any anchestor of container has a transform property, ghost element will b
 ```js
 :get-ghost-parent="getGhostParent"
 
-function getGhostParent() {
+getGhostParent: function() {
   // i.e return document.body;
 }
 ```
