@@ -1,0 +1,36 @@
+{
+  "name": "vue-smooth-dnd-demo",
+  "description": "Vue Smooth DnD - Demo project",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "demo": "cross-env NODE_ENV=production:demo webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "cross-env": "^5.1.5",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.4",
+    "node-sass": "^4.9.2",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.6",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "vue-loader": "^13.7.2",
+    "vue-markdown-loader": "^2.4.1",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
