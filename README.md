@@ -274,7 +274,7 @@ Events may call user-defined handlers at particular points in the drag-and-drop 
 Event to be emitted by all containers on drag start.
 
 ```jsx
-<Container @drag-end="onDragStart">
+<Container @drag-start="onDragStart">
 ```
 ```ts
 onDragStart (dragResult) {
