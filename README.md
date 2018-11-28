@@ -337,6 +337,26 @@ onDragLeave () {
 }
 ```
 
+### onDropReady
+
+The function to be called by the container which is being drag over, when the index of possible drop position changed in container. Basically it is called each time the draggables in a container slides for opening a space for dragged item. **dropResult** is the only parameter passed to the function which contains the following properties.
+
+```jsx
+<Container @drop-ready="onDropReady">
+```
+```js
+onDropReady(dropResult) {
+  const { removedIndex, addedIndex, payload, element } = dropResult;
+  ...
+}
+```
+#### Parameters
+- **dropResult** : `object`
+	- **removedIndex** : `number` : index of the removed children. Will be `null` if no item is removed. 
+	- **addedIndex** : `number` : index to add droppped item. Will be `null` if no item is added. 
+	- **payload** : `object` : the payload object retrieved by calling *getChildPayload* function.
+	- **element** : `DOMElement` : the DOM element that is moved 
+
 ### `@drop`
 
 The event to be emitted by any relevant container when drop is over. (After drop animation ends). Source container and any container that could accept drop is considered relevant.
