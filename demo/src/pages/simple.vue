@@ -1,6 +1,6 @@
 <template>
   <div class="simple-page">
-    <Container @drop="onDrop" :get-ghost-parent="getGhostParent" :remove-on-drop-out="true">
+    <Container @drop="onDrop" :get-ghost-parent="getGhostParent" :remove-on-drop-out="true" @drop-ready="onDropReady">
       <Draggable v-for="item in items" :key="item.id">
         <div class="draggable-item">
           {{item.data}}
@@ -31,6 +31,9 @@ export default {
     },
     getGhostParent(){
       return document.body;
+    },
+    onDropReady(dropResult){
+      console.log('drop ready', dropResult);
     }
   }
 }

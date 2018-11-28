@@ -54,7 +54,13 @@ const mapOptions = context => {
       context.$emit('drag-leave')
     }
   }
-  if (props.getGhostParent) options.getGhostParent = props.getGhostParent
+  if (props.getGhostParent) options.getGhostParent = props.getGhostParent;
+
+  if (props['drop-ready']) {
+    options.onDropReady = dropResult => {
+      context.$emit('drop-ready', dropResult)
+    }
+  }
   return options
 }
 
@@ -107,6 +113,7 @@ export default {
       default: 'div',
     },
     getGhostParent: Function,
+    'drop-ready': Function,
   },
   render: function (createElement) {
     const tagProps = getTagProps(this)
