@@ -337,7 +337,7 @@ onDragLeave () {
 }
 ```
 
-### onDropReady
+### `@drop-ready`
 
 The function to be called by the container which is being drag over, when the index of possible drop position changed in container. Basically it is called each time the draggables in a container slides for opening a space for dragged item. **dropResult** is the only parameter passed to the function which contains the following properties.
 
