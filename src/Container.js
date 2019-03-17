@@ -1,9 +1,9 @@
 /* eslint-disable curly */
-import SmoothDnD, { dropHandlers } from 'smooth-dnd'
+import { smoothDnD, dropHandlers } from 'smooth-dnd'
 import { getTagProps, validateTagProp } from './utils'
 
-SmoothDnD.dropHandler = dropHandlers.reactDropHandler().handler
-SmoothDnD.wrapChild = p => p // don't wrap children they will already be wrapped
+smoothDnD.dropHandler = dropHandlers.reactDropHandler().handler
+smoothDnD.wrapChild = false
 
 const mapOptions = context => {
   const props = Object.assign({}, context.$props, context.$listeners)
@@ -54,7 +54,7 @@ const mapOptions = context => {
       context.$emit('drag-leave')
     }
   }
-  if (props.getGhostParent) options.getGhostParent = props.getGhostParent;
+  if (props.getGhostParent) options.getGhostParent = props.getGhostParent
 
   if (props['drop-ready']) {
     options.onDropReady = dropResult => {
@@ -68,7 +68,7 @@ export default {
   name: 'Container',
   mounted () {
     this.containerElement = this.$refs.container || this.$el
-    this.container = SmoothDnD(this.containerElement, mapOptions(this))
+    this.container = smoothDnD(this.containerElement, mapOptions(this))
   },
   updated () {
     if (
@@ -79,7 +79,7 @@ export default {
         this.container.dispose()
       }
       this.containerElement = this.$refs.container || this.$el
-      this.container = SmoothDnD(this.containerElement, mapOptions(this))
+      this.container = smoothDnD(this.containerElement, mapOptions(this))
     }
   },
   destroyed () {
