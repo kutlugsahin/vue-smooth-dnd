@@ -19,6 +19,9 @@ function output (ext, format = 'umd') {
     file: `dist/${name}.${ext}`,
     format: format,
     exports: 'named',
+    globals: {
+      'smooth-dnd': 'SmoothDnD'
+    }
   }
 }
 
