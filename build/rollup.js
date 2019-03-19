@@ -4,11 +4,12 @@
 
 import path from 'path'
 import license from 'rollup-plugin-license'
+import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
-import uglify from 'rollup-plugin-uglify'
-import buble from 'rollup-plugin-buble'
+import { uglify } from 'rollup-plugin-uglify'
 
 const pkg = require('../package.json')
+
 const external = Object.keys(pkg.dependencies || {})
 const name = pkg.name
 const className = name.replace(/(^\w|-\w)/g, c => c.replace('-', '').toUpperCase())
@@ -25,12 +26,16 @@ function output (ext, format = 'umd') {
   }
 }
 
+const extensions = [
+  '.js', '.jsx', '.ts', '.tsx',
+]
+
 // ------------------------------------------------------------------------------------------
 // build
 // ------------------------------------------------------------------------------------------
 
 const umd = {
-  input: 'src/main.js',
+  input: 'src/main.ts',
   external: external,
   output: output('js'),
   plugins: [
@@ -39,9 +44,15 @@ const umd = {
         file: path.join(__dirname, 'banner.txt')
       },
     }),
-    commonjs(),
-    buble()
-  ]
+    babel({
+      extensions,
+      include: ['./index.ts', 'src/**/*'],
+      exclude: 'node_modules/**',
+    }),
+    commonjs({
+      extensions
+    }),
+  ],
 }
 
 const min = Object.assign({}, umd, {
