@@ -1,7 +1,6 @@
 /* eslint-disable curly */
-import { dropHandlers, smoothDnD } from 'smooth-dnd';
-import { ContainerOptions } from 'smooth-dnd';
-import Vue, { CreateElement } from 'vue';
+import { dropHandlers, smoothDnD, ContainerOptions } from 'smooth-dnd';
+import Vue, { CreateElement, VueConstructor } from 'vue';
 import { getTagProps, validateTagProp } from './utils';
 
 smoothDnD.dropHandler = dropHandlers.reactDropHandler().handler;
@@ -136,4 +135,4 @@ container.props = {
   'drop-ready': Function,
 };
 
-export const Container = Vue.extend<any,any,any, ContainerOptions>(container);
+export const Container = container;

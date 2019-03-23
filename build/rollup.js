@@ -16,12 +16,13 @@ const className = name.replace(/(^\w|-\w)/g, c => c.replace('-', '').toUpperCase
 
 function output (ext, format = 'umd') {
   return {
-    name: className,
+    // name: className,
     file: `dist/${name}.${ext}`,
     format: format,
-    exports: 'named',
+    name: 'VueSmoothDnD',
     globals: {
-      'smooth-dnd': 'SmoothDnD'
+      'smooth-dnd': 'SmoothDnD',
+      'vue': 'Vue'
     }
   }
 }
@@ -36,7 +37,7 @@ const extensions = [
 
 const umd = {
   input: 'src/main.ts',
-  external: external,
+  // external: external,
   output: output('js'),
   plugins: [
     license({
@@ -46,7 +47,7 @@ const umd = {
     }),
     babel({
       extensions,
-      include: ['./index.ts', 'src/**/*'],
+      include: ['src/**/*'],
       exclude: 'node_modules/**',
     }),
     commonjs({

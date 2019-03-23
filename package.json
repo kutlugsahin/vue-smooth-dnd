@@ -27,7 +27,6 @@
     "smooth-dnd"
   ],
   "main": "dist/vue-smooth-dnd.js",
-  "module": "dist/vue-smooth-dnd.esm.js",
   "jsnext:main": "dist/vue-smooth-dnd.esm.js",
   "files": [
     "dist/*"
@@ -61,7 +60,8 @@
     "rollup-plugin-commonjs": "^9.2.1",
     "rollup-plugin-uglify": "6.0.2",
     "typescript": "3.3.3333",
-    "tslint": "5.14.0"
+    "tslint": "5.14.0",
+    "vue": "2.6.9"
   },
   "peerDependencies": {
     "vue": "^2.6.9"
