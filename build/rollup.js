@@ -4,40 +4,34 @@
 
 import path from 'path'
 import license from 'rollup-plugin-license'
-import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
-import { uglify } from 'rollup-plugin-uglify'
+import uglify from 'rollup-plugin-uglify'
+import buble from 'rollup-plugin-buble'
 
 const pkg = require('../package.json')
-
 const external = Object.keys(pkg.dependencies || {})
 const name = pkg.name
 const className = name.replace(/(^\w|-\w)/g, c => c.replace('-', '').toUpperCase())
 
 function output (ext, format = 'umd') {
   return {
-    // name: className,
+    name: className,
     file: `dist/${name}.${ext}`,
     format: format,
-    name: 'VueSmoothDnD',
+    exports: 'named',
     globals: {
-      'smooth-dnd': 'SmoothDnD',
-      'vue': 'Vue'
+      'smooth-dnd': 'SmoothDnD'
     }
   }
 }
-
-const extensions = [
-  '.js', '.jsx', '.ts', '.tsx',
-]
 
 // ------------------------------------------------------------------------------------------
 // build
 // ------------------------------------------------------------------------------------------
 
 const umd = {
-  input: 'src/main.ts',
-  // external: external,
+  input: 'src/main.js',
+  external: external,
   output: output('js'),
   plugins: [
     license({
@@ -45,15 +39,9 @@ const umd = {
         file: path.join(__dirname, 'banner.txt')
       },
     }),
-    babel({
-      extensions,
-      include: ['src/**/*'],
-      exclude: 'node_modules/**',
-    }),
-    commonjs({
-      extensions
-    }),
-  ],
+    commonjs(),
+    buble()
+  ]
 }
 
 const min = Object.assign({}, umd, {
