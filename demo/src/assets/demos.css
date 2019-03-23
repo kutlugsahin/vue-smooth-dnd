@@ -119,3 +119,15 @@
 .form-ghost-drop {
     box-shadow: 0 0 2px 5px rgba(0, 0, 0, 0.0);
 }
+
+.drop-preview {
+  background-color: rgba(150, 150, 200, 0.1);
+  border: 1px dashed #abc;
+  margin: 5px;
+}
+
+.cards-drop-preview {
+  background-color: rgba(150, 150, 200, 0.1);
+  border: 1px dashed #abc;
+  margin: 5px 45px 5px 5px;
+}

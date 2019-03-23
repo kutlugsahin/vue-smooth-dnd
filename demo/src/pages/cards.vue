@@ -5,6 +5,7 @@
       @drop="onColumnDrop($event)"
       drag-handle-selector=".column-drag-handle"
       @drag-start="dragStart"
+      :drop-placeholder="upperDropPlaceholderOptions"
     >
       <Draggable v-for="column in scene.children" :key="column.id">
         <div :class="column.props.className">
@@ -20,6 +21,7 @@
             :get-child-payload="getCardPayload(column.id)"
             drag-class="card-ghost"
             drop-class="card-ghost-drop"
+            :drop-placeholder="dropPlaceholderOptions"
           >
             <Draggable v-for="card in column.children" :key="card.id">
               <div :class="card.props.className" :style="card.props.style">
@@ -93,7 +95,17 @@ export default {
 
   data () {
     return {
-      scene
+      scene,
+      upperDropPlaceholderOptions: {
+        className: 'cards-drop-preview',
+        animationDuration: '150',
+        showOnTop: true
+      },
+      dropPlaceholderOptions: {
+        className: 'drop-preview',
+        animationDuration: '150',
+        showOnTop: true
+      }
     }
   },
 
