@@ -24,6 +24,7 @@ const mapOptions = context => {
   if (props.lockAxis) options.lockAxis = props.lockAxis
   if (props.dragClass) options.dragClass = props.dragClass
   if (props.dropClass) options.dropClass = props.dropClass
+  if (props.dropPlaceholder) options.dropPlaceholder = props.dropPlaceholder
   if (props.removeOnDropOut) options.removeOnDropOut = props.removeOnDropOut
   if (props['drag-start']) {
     options.onDragStart = params => {
@@ -114,6 +115,7 @@ export default {
     },
     getGhostParent: Function,
     'drop-ready': Function,
+    dropPlaceholder: [Object, Boolean]
   },
   render: function (createElement) {
     const tagProps = getTagProps(this)
