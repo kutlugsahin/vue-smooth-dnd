@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-dnd",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Vue wrappers for smooth-dnd",
   "author": "Kutlu Sahin",
   "homepage": "https://kutlugsahin.github.io/vue-smooth-dnd/",
@@ -45,7 +45,7 @@
     "url": "https://github.com/kutlugsahin/vue-smooth-dnd/issues"
   },
   "dependencies": {
-    "smooth-dnd": "^0.9.2"
+    "smooth-dnd": "^0.9.4"
   },
   "devDependencies": {
     "babel-jest": "^23.4.0",
