@@ -6,8 +6,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 var src = path.resolve(__dirname, './src')
 var dist = path.resolve(__dirname, './dist')
-var lib = path.resolve(__dirname, '../dist/vue-smooth-dnd.js')
-
+var lib = path.resolve(__dirname, '../src/main.js')
+// var smoothDnDlib = path.resolve(__dirname, '../dist/vue-smooth-dnd.js')
 function resolve (path) {
   return src + '/' + (path || '')
 }
@@ -110,7 +110,8 @@ module.exports = {
 }
 
 if (fs.existsSync(lib)) {
-  module.exports.resolve.alias['vue-smooth-dnd'] = lib
+  module.exports.resolve.alias['vue-smooth-dnd'] = lib;
+  // module.exports.resolve.alias['smooth-dnd'] = smoothDnDlib;
 }
 
 if (process.env.NODE_ENV === 'production') {

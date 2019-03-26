@@ -19,18 +19,20 @@ function getContainerOptions (props, context) {
     const optionName = key;
     const prop = props[optionName];
 
-    if (typeof prop === 'function') {
-      if (eventEmitterMap[prop]) {
-        result[eventEmitterMap[prop]] = (params) => {
-          context.$emit(prop, params);
-        };
+    if (prop !== undefined) {
+      if (typeof prop === 'function') {
+        if (eventEmitterMap[optionName]) {
+          result[eventEmitterMap[optionName]] = (params) => {
+            context.$emit(optionName, params);
+          };
+        } else {
+          result[optionName] = (...params) => {
+            return (prop)(...params);
+          };
+        }
       } else {
-        result[optionName] = (...params) => {
-          return (this.props[optionName])(...params);
-        };
+        result[optionName] = prop;
       }
-    } else {
-      result[optionName] = prop;
     }
 
     return result;
@@ -80,7 +82,7 @@ export default {
     removeOnDropOut: { type: Boolean, default: false },
     'drag-start': Function,
     'drag-end': Function,
-    'drop': Function,
+    drop: Function,
     getChildPayload: Function,
     shouldAnimateDrop: Function,
     shouldAcceptDrop: Function,
