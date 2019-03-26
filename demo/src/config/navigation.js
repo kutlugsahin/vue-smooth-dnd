@@ -1,9 +1,9 @@
 function section (title, pages) {
-  return { title, pages }
+  return { title, pages };
 }
 
 function page (name, title) {
-  return { name, title, component: require(`../pages/${name}.vue`).default }
+  return { name, title, component: require(`../pages/${name}.vue`).default };
 }
 
 export default [
@@ -32,4 +32,4 @@ export default [
   section('Interaction', [
     page('events', 'Callbacks and Events')
   ])
-]
+];

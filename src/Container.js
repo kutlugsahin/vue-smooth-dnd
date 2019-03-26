@@ -1,75 +1,52 @@
 /* eslint-disable curly */
-import { smoothDnD, dropHandlers } from 'smooth-dnd'
-import { getTagProps, validateTagProp } from './utils'
+import { smoothDnD, dropHandlers } from 'smooth-dnd';
+import { getTagProps, validateTagProp } from './utils';
 
-smoothDnD.dropHandler = dropHandlers.reactDropHandler().handler
-smoothDnD.wrapChild = false
+smoothDnD.dropHandler = dropHandlers.reactDropHandler().handler;
+smoothDnD.wrapChild = false;
+
+const eventEmitterMap = {
+  'drag-start': 'onDragStart',
+  'drag-end': 'onDragEnd',
+  'drop': 'onDrop',
+  'drag-enter': 'onDragEnter',
+  'drag-leave': 'onDragLeave',
+  'drop-ready': 'onDropReady'
+};
+
+function getContainerOptions (props, context) {
+  return Object.keys(props).reduce((result, key) => {
+    const optionName = key;
+    const prop = props[optionName];
+
+    if (typeof prop === 'function') {
+      if (eventEmitterMap[prop]) {
+        result[eventEmitterMap[prop]] = (params) => {
+          context.$emit(prop, params);
+        };
+      } else {
+        result[optionName] = (...params) => {
+          return (this.props[optionName])(...params);
+        };
+      }
+    } else {
+      result[optionName] = prop;
+    }
+
+    return result;
+  }, {});
+}
 
 const mapOptions = context => {
-  const props = Object.assign({}, context.$props, context.$listeners)
-  const options = {}
-  if (props.behaviour) options.behaviour = props.behaviour
-  if (props.groupName) options.groupName = props.groupName
-  if (props.orientation) options.orientation = props.orientation
-  if (props.dragHandleSelector)
-    options.dragHandleSelector = props.dragHandleSelector
-  if (props.nonDragAreaSelector)
-    options.nonDragAreaSelector = props.nonDragAreaSelector
-  if (props.dragBeginDelay !== undefined)
-    options.dragBeginDelay = props.dragBeginDelay
-  if (props.animationDuration !== undefined)
-    options.animationDuration = props.animationDuration
-  if (props.autoScrollEnabled !== undefined)
-    options.autoScrollEnabled = props.autoScrollEnabled
-  if (props.lockAxis) options.lockAxis = props.lockAxis
-  if (props.dragClass) options.dragClass = props.dragClass
-  if (props.dropClass) options.dropClass = props.dropClass
-  if (props.dropPlaceholder) options.dropPlaceholder = props.dropPlaceholder
-  if (props.removeOnDropOut) options.removeOnDropOut = props.removeOnDropOut
-  if (props['drag-start']) {
-    options.onDragStart = params => {
-      context.$emit('drag-start', params)
-    }
-  }
-  if (props['drag-end']) {
-    options.onDragEnd = params => {
-      context.$emit('drag-end', params)
-    }
-  }
-  if (props['drop']) {
-    options.onDrop = dragResult => {
-      context.$emit('drop', dragResult)
-    }
-  }
-  if (props.getChildPayload) options.getChildPayload = props.getChildPayload
-  if (props.shouldAnimateDrop)
-    options.shouldAnimateDrop = props.shouldAnimateDrop
-  if (props.shouldAcceptDrop) options.shouldAcceptDrop = props.shouldAcceptDrop
-  if (props['drag-enter']) {
-    options.onDragEnter = () => {
-      context.$emit('drag-enter')
-    }
-  }
-  if (props['drag-leave']) {
-    options.onDragLeave = () => {
-      context.$emit('drag-leave')
-    }
-  }
-  if (props.getGhostParent) options.getGhostParent = props.getGhostParent
-
-  if (props['drop-ready']) {
-    options.onDropReady = dropResult => {
-      context.$emit('drop-ready', dropResult)
-    }
-  }
-  return options
-}
+  const props = Object.assign({}, context.$props, context.$listeners);
+  return getContainerOptions(props, context);
+};
 
 export default {
   name: 'Container',
   mounted () {
-    this.containerElement = this.$refs.container || this.$el
-    this.container = smoothDnD(this.containerElement, mapOptions(this))
+    this.containerElement = this.$refs.container || this.$el;
+    this.container = smoothDnD(this.containerElement, mapOptions(this));
   },
   updated () {
     if (
@@ -77,15 +54,15 @@ export default {
       this.$el !== this.containerElement
     ) {
       if (this.container) {
-        this.container.dispose()
+        this.container.dispose();
       }
-      this.containerElement = this.$refs.container || this.$el
-      this.container = smoothDnD(this.containerElement, mapOptions(this))
+      this.containerElement = this.$refs.container || this.$el;
+      this.container = smoothDnD(this.containerElement, mapOptions(this));
     }
   },
   destroyed () {
     if (this.container) {
-      this.container.dispose()
+      this.container.dispose();
     }
   },
   props: {
@@ -103,7 +80,7 @@ export default {
     removeOnDropOut: { type: Boolean, default: false },
     'drag-start': Function,
     'drag-end': Function,
-    drop: Function,
+    'drop': Function,
     getChildPayload: Function,
     shouldAnimateDrop: Function,
     shouldAcceptDrop: Function,
@@ -118,11 +95,11 @@ export default {
     dropPlaceholder: [Object, Boolean]
   },
   render: function (createElement) {
-    const tagProps = getTagProps(this)
+    const tagProps = getTagProps(this);
     return createElement(
       tagProps.value,
       Object.assign({}, { ref: 'container' }, tagProps.props),
       this.$slots.default,
-    )
+    );
   }
-}
+};
