@@ -1,15 +1,15 @@
-var fs = require('fs')
-var path = require('path')
-var webpack = require('webpack')
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
+var fs = require('fs');
+var path = require('path');
+var webpack = require('webpack');
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-var src = path.resolve(__dirname, './src')
-var dist = path.resolve(__dirname, './dist')
-var lib = path.resolve(__dirname, '../src/main.js')
+var src = path.resolve(__dirname, './src');
+var dist = path.resolve(__dirname, './dist');
+var lib = path.resolve(__dirname, '../src/main.js');
 // var smoothDnDlib = path.resolve(__dirname, '../dist/vue-smooth-dnd.js')
 function resolve (path) {
-  return src + '/' + (path || '')
+  return src + '/' + (path || '');
 }
 
 module.exports = {
@@ -107,7 +107,7 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map'
-}
+};
 
 if (fs.existsSync(lib)) {
   module.exports.resolve.alias['vue-smooth-dnd'] = lib;
@@ -115,7 +115,7 @@ if (fs.existsSync(lib)) {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new CopyWebpackPlugin(['index.html'], { from: './', to: dist }),
@@ -133,5 +133,5 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
-  ])
+  ]);
 }

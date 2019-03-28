@@ -1,7 +1,6 @@
 /* eslint-disable curly */
 import { smoothDnD, dropHandlers } from 'smooth-dnd';
 import { getTagProps, validateTagProp } from './utils';
-import Vue from 'vue';
 
 smoothDnD.dropHandler = dropHandlers.reactDropHandler().handler;
 smoothDnD.wrapChild = false;
@@ -47,7 +46,7 @@ const mapOptions = context => {
   return getContainerOptions(props, context);
 };
 
-export default Vue.extend({
+export default {
   name: 'Container',
   mounted () {
     this.containerElement = this.$refs.container || this.$el;
@@ -110,4 +109,4 @@ export default Vue.extend({
       this.$slots.default,
     );
   }
-});
+};
