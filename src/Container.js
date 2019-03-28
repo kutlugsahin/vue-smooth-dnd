@@ -1,6 +1,7 @@
 /* eslint-disable curly */
 import { smoothDnD, dropHandlers } from 'smooth-dnd';
 import { getTagProps, validateTagProp } from './utils';
+import Vue from 'vue';
 
 smoothDnD.dropHandler = dropHandlers.reactDropHandler().handler;
 smoothDnD.wrapChild = false;
@@ -15,7 +16,7 @@ const eventEmitterMap = {
 };
 
 function getContainerOptions (props, context) {
-  return Object.keys(props).reduce((result, key) => {
+  const options = Object.keys(props).reduce((result, key) => {
     const optionName = key;
     const prop = props[optionName];
 
@@ -37,6 +38,8 @@ function getContainerOptions (props, context) {
 
     return result;
   }, {});
+
+  return options;
 }
 
 const mapOptions = context => {
@@ -44,7 +47,7 @@ const mapOptions = context => {
   return getContainerOptions(props, context);
 };
 
-export default {
+export default Vue.extend({
   name: 'Container',
   mounted () {
     this.containerElement = this.$refs.container || this.$el;
@@ -60,7 +63,10 @@ export default {
       }
       this.containerElement = this.$refs.container || this.$el;
       this.container = smoothDnD(this.containerElement, mapOptions(this));
+      return;
     }
+
+    this.container.setOptions(mapOptions(this));
   },
   destroyed () {
     if (this.container) {
@@ -104,4 +110,4 @@ export default {
       this.$slots.default,
     );
   }
-};
+});
