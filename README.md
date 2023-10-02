@@ -226,7 +226,7 @@ shouldAcceptDrop (sourceContainerOptions, payload) {
 ### `should-animate-drop()`
 
 The function to be called by the target container to which the dragged item will be dropped.
-Sometimes dragged item's dimensions are not suitable with the target container and dropping animation can be wierd. So it can be disabled by returning **false**. If not set drop animations are enabled.
+Sometimes dragged item's dimensions are not suitable with the target container and dropping animation can be weird. So it can be disabled by returning **false**. If not set drop animations are enabled.
 
 ```jsx
 <Container :should-animate-drop="shouldAnimateDrop">
